@@ -1,14 +1,18 @@
 import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-//import NavBar from '../components/NavBar';
-import QuizContainer from '../containers/QuizContainer';
+import Home from '../containers/Home';
+import NavBar from '../containers/NavBar';
+
 const App = (props) => {
     return(
+        <div>
+        <NavBar />
         <Router>
             <React.Fragment>
-             <Route exact path="/" component={QuizContainer}></Route>
+             <Route exact path="/" component={Home}></Route>
             </React.Fragment>    
         </Router>
+        </div>
     );
 };
 

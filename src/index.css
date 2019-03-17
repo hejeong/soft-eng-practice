@@ -27,6 +27,26 @@ body {
     margin: 0 auto;
     height: 100%;
 }
+
+.sideBar {
+    height: 100%; 
+    width: 320px; 
+    position: fixed; /* makes it stay put on scroll */
+    z-index: 1; /*makesit stay on top*/
+    top: 0; 
+    left: -160;
+    background-color: #111; 
+    overflow-x: hidden; /* disables horizontal scroll */
+    padding-top: 20px;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 button {
     border: none;
 }
