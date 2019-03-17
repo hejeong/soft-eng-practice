@@ -56,6 +56,8 @@ button {
     width: 320px;
     height: 100px;
     overflow-x: hidden;
+    text-align: center;
+    background: white;
 }
 
 .answer-choice{
