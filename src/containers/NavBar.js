@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useSpring, animated } from 'react-spring';
-import MenuButton from '../components/MenuButton'
+import { NavLink } from 'react-router-dom';
+//import MenuButton from '../components/MenuButton';
 
 function NavBar() {
     const [toggle, set] = useState(true)
@@ -16,9 +17,9 @@ function NavBar() {
         onMouseEnter={() => set(state => !state)}
         onMouseLeave={() => set(state => !state)}
         style={move}>
-            <MenuButton className='button'>
-                bitch
-            </MenuButton>
+        <NavLink to="/" exact>Home</NavLink>
+        <NavLink to="/forum" exact>Forum</NavLink>
+        <NavLink to="/quizzes" exact>Quizzes</NavLink> 
         </animated.div>
     )
 }
