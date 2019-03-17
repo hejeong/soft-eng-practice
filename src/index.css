@@ -51,6 +51,13 @@ button {
     border: none;
 }
 
+.navButton {
+    display: inline-block;
+    width: 320px;
+    height: 100px;
+    overflow-x: hidden;
+}
+
 .answer-choice{
     text-align: left;
     background: rgba(116, 235, 213, 0.431);
