@@ -3,25 +3,33 @@ import QuizAnswer from './QuizAnswer';
 class Quiz extends Component {
     constructor(props){
         super(props)
-        const len = props.quizzes.length;
+        const len = props.quiz.length;
         this.state = {
-            selected: new Array(len).fill(null) 
+            selected: new Array(len).fill(null),
+            correct: new Array(len).fill(false)
         }
     }
 
-    handleClick = (questionNum , answerPicked) => {
+    handleClick = (questionNum , answerPicked, isCorrect) => {
         let newSelect = this.state.selected.slice();
+        let newCorrect = this.state.correct.slice();
         newSelect[questionNum] = answerPicked;
+        newCorrect[questionNum] = isCorrect;
         this.setState({
-            selected: newSelect 
+            selected: newSelect,
+            correct: newCorrect
         })
+        this.props.getCurrentState({
+            selected: newSelect,
+            correct: newCorrect
+        });
     }
 
     render(){
-        const quizzes = this.props.quizzes
+        const questions = this.props.quiz
         return(
             <div>
-                {quizzes.map((quiz, index) => (
+                {questions.map((quiz, index) => (
                 <div key={index} question={index}>
                     <label className="question">{quiz.question}</label> <br />
                     <QuizAnswer questionNum={index} 

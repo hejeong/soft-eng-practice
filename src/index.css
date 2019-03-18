@@ -95,7 +95,7 @@ button {
     border-color: #b3504c;
     background: #b3504cab
 }
-#question{
+.question{
     font-size: 30px;
 }
 
@@ -157,5 +157,14 @@ button {
 }
 
 [type="checkbox"]{
-    background: blue;
+    width:13px;
+    height:13px;
+    background:white;
+    border-radius:5px;
+    border:2px solid #555;
+}
+
+#quiz-form>input[type="submit"]{
+    float: right;
+    margin-right: 14.5%;
 }

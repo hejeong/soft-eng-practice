@@ -2,18 +2,23 @@ import React, {Component} from 'react';
 
 class QuizAnswer extends Component{
 
-    checkSelected = (question, index) => {
-       // document.querySelector(`[question='${question}'] [index='${index}'] [type='checkbox']`).checked = true;
-     //  console.log(document.querySelector(`[question='0'] [index='0'] [type='checkbox']`));
-       if(parseInt(this.props.selected,10) === index){
+    checkSelected = (question, index) => {    
+      let checkbox = document.querySelector(`[question='${question}'] [index='${index}'] [type='checkbox']`)
+      if(checkbox === null){
+          return '';
+      }else if(parseInt(this.props.selected,10) === index){
+          checkbox.checked = true;
           return ' selected';
        }else{
+          checkbox.checked = false;
           return '';
        }
     }
     handleClick = (event) => {
-        const answerNum = event.target.getAttribute('index')   
-        this.props.clickAction(this.props.questionNum,answerNum);
+        const answerNum = event.target.getAttribute('index')
+        //check solution
+        const correct = event.target.getAttribute('value') === this.props.solution ? true : false;
+        this.props.clickAction(this.props.questionNum,answerNum, correct);
     }
     
     render(){
@@ -27,7 +32,7 @@ class QuizAnswer extends Component{
                     className={'answer-choice' + this.checkSelected(qNum, index)}
                     value={answer} 
                     onClick={this.handleClick}>
-                    <input type="checkbox" />
+                    <input type="checkbox"  />
                     {answer}
                 </div>
                 ))} 
