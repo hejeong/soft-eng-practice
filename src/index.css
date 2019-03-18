@@ -84,9 +84,7 @@ button {
     border-color: #56d495;
 }
 .selected {
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
+    background: rgba(116, 235, 213, 0.767);
 }
 .correct-answer.selected{
     background: #56d49577;
@@ -156,4 +154,8 @@ button {
 .next:hover {
     background: rgb(135, 135, 199);
     color: rgba(255, 255, 255, 0.787);
+}
+
+[type="checkbox"]{
+    background: blue;
 }
