@@ -1,8 +1,7 @@
 body {
     font: 14px "Century Gothic", Futura, sans-serif;
     margin: 20px;
-    background-color: #0D3B66;
-    background-image: linear-gradient(-90deg, rgb(67, 207, 182), rgb(143, 156, 214));
+    background-color: #0d3b66;
     color: #FBFBFB;
     text-align: center;
     height: 100%;
@@ -67,7 +66,6 @@ button {
     transition: 0.4s;
     padding: 6px;
     width: 70%;
-    border-radius: 10px;
     color: white;
 }
 

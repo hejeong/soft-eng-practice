@@ -40,10 +40,9 @@ class QuizAnswer extends Component{
         return(
             <React.Fragment>
                 {answers.map((answer, index) => (
-                <button key={index} className={'answer-choice' + this.validateAnswer(answer)} value={answer} onClick={this.handleClick}>{alphabet[index]}. {answer}</button>
+                <button key={index} className={'answer-choice' + this.validateAnswer(answer)} value={answer} onClick={this.handleClick}><input type="checkbox" />{alphabet[index]}. {answer}</button>
                 ))} 
                 <br />
-                <button className="next"><span>Next Question</span></button>
             </React.Fragment>
         )
     }
