@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
 
-class Thread extends Component{
+class Thread extends Component {
     render(){
         const title = this.props.title
         const posts = this.props.posts
         return(
-            <React.fragment>
-                    {posts.map((post, index) => (
-                        <div>
-                            <h1>{title}</h1>
+            <div>
+                    <h1>{title}</h1>
+                    <div className='forum'>
+                    {posts.map((posts, index) => (
                             <div className='post'>
-                                {post}
+                                {posts}
                             </div>
-                        </div>
                     ))}
-            </React.fragment> 
+                    </div>
+            </div> 
         )
-    }
+                    }}
             
-}
 
 export default Thread;

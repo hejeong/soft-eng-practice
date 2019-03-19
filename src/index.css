@@ -50,13 +50,16 @@ body {
 }
 
 .post {
-    background-color: black;
+    font-size: 500%;
+    background-color: rgb(179, 179, 179);
     position: relative;
-    width: 85%;
+    width: 99%;
     left: 50%;
     transform: translate(-50%, 0);
-    height: 100px;
+    height: 500px;
     top:20px;
+    margin-top:20px;
+    margin-bottom:20px;
 }
 
 .thread {

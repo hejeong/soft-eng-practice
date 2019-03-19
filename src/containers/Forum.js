@@ -8,18 +8,11 @@ function Forum() {
     return(
         <div className="forum">
             {forum.map((thread, index) => (
+                <div>
                     <NavLink className='thread' to={"/forum/" + thread.id} exact>
                         {thread.title}
-                        <Router>
-                            <Route exact path={"/forum/" + thread.id} render={(props) => 
-                                <Thread {...props} 
-                                posts={thread.posts} 
-                                title={thread.title} 
-                                id={thread.id} 
-                                endorsed={thread.endorsed}/>
-                            }/>
-                        </Router>
                     </NavLink>
+                </div>
             ))}
         </div>
     );
