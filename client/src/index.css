@@ -39,11 +39,37 @@ body {
     padding-top: 20px;
 }
 
-.centered {
-    position: fixed;
-    top: 50%;
+.forum {
+    background-color: gray;
+    position: relative;
+    top: 80px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0);
+    width: 75%;
+    height: 8000px;
+}
+
+.post {
+    font-size: 500%;
+    background-color: rgb(179, 179, 179);
+    position: relative;
+    width: 99%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 500px;
+    top:20px;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.thread {
+    display: inline-block;
+    text-align: center;
+    background-color: black;
+    position: relative;
+    width: 85%;
+    height: 100px;
+    top:20px;
 }
 
 button {
