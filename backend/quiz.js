@@ -12,4 +12,4 @@ const QuizSchema = new Schema(
 );
 
 // export the new Schema so we could modify it using Node.js
-module.exports = mongoose.model("Quiz", QuizSchema);
+module.exports = mongoose.model("Quiz", QuizSchema, "quizzes");

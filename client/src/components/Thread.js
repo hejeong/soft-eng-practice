@@ -16,7 +16,7 @@ class Thread extends Component {
                     </div>
             </div> 
         )
-                    }}
+}}
             
 
 export default Thread;

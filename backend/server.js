@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const User = require("./user");
 const Quiz = require("./quiz");
+const Forum = require("./forum");
 
 const API_PORT = 3001;
 const app = express();
@@ -45,12 +46,19 @@ router.get("/getUsers", (req, res) => {
 });
 
 router.get("/getQuizzes", (req, res) => {
-  console.log(Quiz);
   Quiz.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
 });
+
+router.get("/getForums", (req, res) => {
+  Forum.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
 // append /api for our http requests
 app.use("/api", router);
 
