@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import QuizContainer from '../../containers/QuizContainer'
 const QuizIndex = ({match, quizzes}) => {
-        const renderQuizIndex = quizzes.map((quiz, index) => <Link className="quiz-link" key={index} to={`/quizzes/${index}`}>Quiz {index+1}</Link>)
+        const renderQuizIndex = quizzes.map((quiz, index) => <Link className="quiz-link" key={index} to={`/quizzes/${quiz.quizid}`}>Quiz {index+1}</Link>)
     
         return(
             <div>              
@@ -10,7 +10,7 @@ const QuizIndex = ({match, quizzes}) => {
                     renderQuizIndex
                 )} />
                 {quizzes.map((quiz, index) => (
-                 <Route key={index} path={`${match.url}/${index}`}  render={(routerProps)=> <QuizContainer quizzes={quizzes} quizNum={index} />} />
+                 <Route key={index} path={`${match.url}/${quiz.quizid}`}  render={(routerProps)=> <QuizContainer quizzes={quizzes} quizNum={index} />} />
                 ))}
             </div>
         )

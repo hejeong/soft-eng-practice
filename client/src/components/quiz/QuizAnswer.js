@@ -31,7 +31,7 @@ class QuizAnswer extends Component{
                 {this.state.shuffledAnswers.map((answer, index) => (
                 <div key={index} 
                     index = {index}
-                    className={'answer-choice' + this.checkSelected(qNum, index)}
+                    className={'answer-choice clear' + this.checkSelected(qNum, index)}
                     value={answer} 
                     onClick={this.handleClick}>
                     <input type="checkbox"  />

@@ -123,6 +123,9 @@ button {
 }
 .question{
     font-size: 30px;
+    float: left;
+    margin-left: 14.5%;
+    margin-bottom: 10px;
 }
 
 .not-active {
@@ -132,7 +135,9 @@ button {
     background: grey;
     color: rgba(251, 251, 251, 0.507)
 }
-
+.clear{
+    clear:both; 
+}
 .solution{
     pointer-events: none;
     cursor: default;
@@ -190,6 +195,9 @@ button {
     border:2px solid #555;
 }
 
+#quiz-form {
+    padding-top: 30px;
+}
 .quiz-link{
     color:white;
 }
@@ -213,6 +221,8 @@ button {
     left: 30px;
     top: -10px;
     color: rgba(236, 232, 8, 0.986);
+    display: inline-block;
+    float: left;
 }
 
 .timer-box {
@@ -223,5 +233,17 @@ button {
     margin: 0px;
     width: auto;
     height: 45px;
-    background: rgba(0, 0, 0, 0.521);
+    background: rgba(0, 0, 0, 0.733);
+    text-align: center;
+}
+
+.quiz-title{
+    display: inline-block;
+    padding-left: 150px;
+}
+
+.user-name {
+    display: inline-block;
+    padding-right: 5px;
+    float: right;
 }

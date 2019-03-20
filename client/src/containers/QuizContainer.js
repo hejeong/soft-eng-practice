@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import Quiz from '../components/quiz/Quiz';
 import CountdownTimer from '../components/quiz/CountdownTimer';
 import axios from "axios";
+import history from '../History'
 
 class QuizContainer extends Component{
     constructor(props){
         super(props)
-        console.log(props.quiz)
         this.state = {
             quizzes: props.quizzes,
             quizNum: props.quizNum,
@@ -35,7 +35,6 @@ class QuizContainer extends Component{
     };
 
     copyCurrentState = (current) => {
-        console.log(current)
         this.setState({
             selected: current.selected,
             correct: current.correct
@@ -58,9 +57,10 @@ class QuizContainer extends Component{
 
     };
 
-    handleSubmit = (event) => {
+    handleSubmit = () => {
         const numCorrect = this.state.correct.filter(value => value).length;
         this.submitQuizToDb(numCorrect);
+        history.push('/quizzes')
         //console.log('Number of Correct Answers: ' + this.state.correct.filter(value => value).length)
     }
 
@@ -68,10 +68,10 @@ class QuizContainer extends Component{
         const currentQuiz = this.state.quizzes[this.state.quizNum].problems;
         return(
             <form id="quiz-form">
-            <CountdownTimer />
+            <CountdownTimer quizId={this.state.quizId} autoSubmit={this.handleSubmit}/>
             <br/>
             <Quiz quiz={currentQuiz} getCurrentState={this.copyCurrentState}/>
-            <Link to='/quizzes' className="link-button" onClick={this.handleSubmit}>Submit Answers</Link>
+            <div className="link-button" onClick={this.handleSubmit}>Submit Answers</div>
             </form>
         )
     }
