@@ -64,12 +64,14 @@ class QuizContainer extends Component{
     }
 
     render(){
-        const currentQuiz = this.state.quizzes[this.state.quizNum].problems;
+        const currentQuiz = this.state.quizzes[this.state.quizNum];
+        const timeLimit = currentQuiz.timelimit;
+        const currentProblems = currentQuiz.problems;
         return(
             <form id="quiz-form">
-            <CountdownTimer quizId={this.state.quizId} autoSubmit={this.handleSubmit}/>
+            <CountdownTimer quizId={this.state.quizId} timeLimit={timeLimit} autoSubmit={this.handleSubmit}/>
             <br/>
-            <Quiz quiz={currentQuiz} getCurrentState={this.copyCurrentState}/>
+            <Quiz quiz={currentProblems} getCurrentState={this.copyCurrentState}/>
             <div className="link-button" onClick={this.handleSubmit}>Submit Answers</div>
             </form>
         )

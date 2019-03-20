@@ -10,7 +10,8 @@ class Home extends Component{
               query: ""
         };  
     }
-    searchForum = (query) => {
+    searchForum = (event) => {
+        const query = this.state.query;
         console.log(query)
         axios.get('http://localhost:3001/api/searchForum', {params: {title:query}})
          .then(res =>{
@@ -18,11 +19,9 @@ class Home extends Component{
   
             this.setState({ searchInfo });
          })
+         debugger
     };
-    componentDidUpdate() {
-        this.searchForum('Thread1');
 
-    }
 
     handleInputChange = () => {
         this.setState({
@@ -43,7 +42,7 @@ class Home extends Component{
                 />
                 <p>{this.state.query}</p>
             </form>
-            <button onClick={this.searchForum(this.state.query)}/>
+            <button onClick={this.searchForum}/>
             </div>
         )   
     } 
