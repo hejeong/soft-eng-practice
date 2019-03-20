@@ -207,3 +207,21 @@ button {
   float: right;
   margin-right: 14.5%;
 }
+
+.timer {
+    position: fixed;
+    left: 30px;
+    top: -10px;
+    color: rgba(236, 232, 8, 0.986);
+}
+
+.timer-box {
+    position:fixed;
+    top: -10px;
+    left:0;
+    right:0;
+    margin: 0px;
+    width: auto;
+    height: 45px;
+    background: rgba(0, 0, 0, 0.521);
+}
