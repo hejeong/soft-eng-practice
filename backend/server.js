@@ -45,7 +45,6 @@ router.get("/getUsers", (req, res) => {
 });
 
 router.get("/getQuizzes", (req, res) => {
-  console.log(Quiz);
   Quiz.find((err, data) => {
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });

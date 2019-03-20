@@ -4,8 +4,9 @@ const Schema = mongoose.Schema;
 // this will be our data base's data structure 
 const UserSchema = new Schema(
   {
-    quizid: Number,
-    problems: Array,
+    id: Number,
+    password: String,
+    name: String
   },
   { timestamps: true }
 );
