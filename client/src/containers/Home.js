@@ -12,14 +12,14 @@ class Home extends Component{
     }
     searchForum = (query) => {
         console.log(query)
-        axios.post('http://localhost:3001/api/searchForum', {params: {title:query}})
+        axios.get('http://localhost:3001/api/searchForum', {params: {title:query}})
          .then(res =>{
             const searchInfo = res.data 
   
             this.setState({ searchInfo });
          })
     };
-    componentDidMount() {
+    componentDidUpdate() {
         this.searchForum('Thread1');
 
     }
@@ -28,12 +28,13 @@ class Home extends Component{
         this.setState({
           query: this.search.value
         })
-        this.searchForum(this.state.query)
+        //this.searchForum(this.state.query)
       }
       
     render(){
         console.log(this.state.searchInfo)
         return(
+            <div>
             <form>
                 <input
                     placeholder="Search for..."
@@ -42,7 +43,9 @@ class Home extends Component{
                 />
                 <p>{this.state.query}</p>
             </form>
-        )
+            <button onClick={this.searchForum(this.state.query)}/>
+            </div>
+        )   
     } 
     
 }

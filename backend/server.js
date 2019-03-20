@@ -39,14 +39,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-router.post("/searchForum", (req, res) => {
-  console.log(req.body.params.title)
+router.get("/searchForum", (req, res) => {
+  console.log(req.query.title)
   Forum.find({
-    'title': req.body.params.title
+    'title': req.query.title
   },
     (err, data) => {
     if (err) return res.json({ success: false, error: err });
-    res.send(data)
+    return res.json({ success: true, data: data });
   });
 });
 
