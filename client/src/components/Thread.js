@@ -1,22 +1,25 @@
-import React, {Component} from 'react';
+import React from 'react';
 
-class Thread extends Component {
-    render(){
-        const title = this.props.title
-        const posts = this.props.posts
+const Thread = ({match, forum}) => {
+        console.log(match)
+        const currentThread = forum[match.params.threadId];
         return(
-            <div>
-                    <h1>{title}</h1>
+           <div>
+                    <h1>{currentThread.title}</h1>
                     <div className='forum'>
-                    {posts.map((posts, index) => (
+                    {currentThread.posts.map((posts, index) => (
                             <div className='post'>
                                 {posts}
                             </div>
                     ))}
                     </div>
-            </div> 
+            </div>
         )
+<<<<<<< HEAD
 }}
+=======
+}
+>>>>>>> 057f049e35140d6bfaf1f312c3c6803770928a2b
             
 
 export default Thread;
