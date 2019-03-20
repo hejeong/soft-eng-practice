@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import Quiz from '../components/Quiz';
-import {quiz} from '../data/Quizzes'
 class QuizContainer extends Component{
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
+        console.log(props.quiz)
         this.state = {
+            quiz: props.quiz.problems,
             selected: [],
             correct: []
         }
@@ -26,7 +27,7 @@ class QuizContainer extends Component{
     render(){
         return(
             <form id="quiz-form" onSubmit={this.handleSubmit}>
-            <Quiz quiz={quiz} getCurrentState={this.copyCurrentState}/>
+            <Quiz quiz={this.state.quiz} getCurrentState={this.copyCurrentState}/>
             <input type="submit" value="Submit Answers" />
             </form>
         )

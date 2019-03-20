@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 
 class QuizAnswer extends Component{
+    state = {
+        rightAnswer: this.props.answers[0]
+    }
 
     checkSelected = (question, index) => {    
       let checkbox = document.querySelector(`[question='${question}'] [index='${index}'] [type='checkbox']`)
@@ -17,7 +20,7 @@ class QuizAnswer extends Component{
     handleClick = (event) => {
         const answerNum = event.target.getAttribute('index')
         //check solution
-        const correct = event.target.getAttribute('value') === this.props.solution ? true : false;
+        const correct = event.target.getAttribute('value') === this.state.rightAnswer ? true : false;
         this.props.clickAction(this.props.questionNum,answerNum, correct);
     }
     
