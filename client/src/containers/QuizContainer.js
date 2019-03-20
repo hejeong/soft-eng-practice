@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import {Link, Redirect} from 'react-router-dom';
 import Quiz from '../components/quiz/Quiz';
 import CountdownTimer from '../components/quiz/CountdownTimer';
 import axios from "axios";

@@ -4,7 +4,6 @@ import Home from '../containers/Home';
 import ForumContainer from './ForumContainer';
 import QuizIndex from '../components/quiz/QuizIndex';
 import NavBar from '../containers/NavBar';
-import {forum} from '../data/Threads'
 import history from '../History'
 
 
@@ -48,7 +47,7 @@ class App extends Component {
                 
                 <NavBar/>
                 <Route exact path='/' component={Home} />
-                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={forum} />} />
+                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={this.state.forumData} />} />
              <Route path='/quizzes' render={routerProps => <QuizIndex {...routerProps} quizzes={this.state.quizzesData} />} />
             </React.Fragment>    
         </Router>

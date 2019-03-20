@@ -17,6 +17,7 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
 });
+app.use(bodyParser.json());
 const dbRoute = "mongodb+srv://minerva:minerva@minerva-c20xu.mongodb.net/minerva";
 
 // connects our back end code with the database
@@ -38,28 +39,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
 
-/*forumSearchRouter.route('/searchForum').get((req, res) => {
-  const searched = new Forum(req.body);
-  console.log('done')
-  searched.save()
-    .then(searched => {
-        res.json('Got data!!')
-        console.log('done')
-    })
-    .catch(err => {
-    res.status(400).send("unable to get data");
-    console.log('CustomerID is required', err.res);
-    });
-});*/
-
-router.get("/searchForum", (req, res) => {
-  console.log('haha')
+router.post("/searchForum", (req, res) => {
+  console.log(req.body.params.title)
   Forum.find({
-    title:'Thread1'
+    'title': req.body.params.title
   },
     (err, data) => {
     if (err) return res.json({ success: false, error: err });
-    return res.json({ success: true, data: data });
+    res.send(data)
   });
 });
 
