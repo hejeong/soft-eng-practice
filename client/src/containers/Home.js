@@ -19,7 +19,7 @@ class Home extends Component{
          })
     };
     componentDidMount() {
-        this.search("1");
+        this.search("");
 
     }
     render(){
