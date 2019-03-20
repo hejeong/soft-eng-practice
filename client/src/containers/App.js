@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import Home from '../containers/Home';
 import ForumContainer from './ForumContainer';
-import QuizContainer from '../containers/QuizContainer';
+import QuizIndex from '../components/QuizIndex';
 import NavBar from '../containers/NavBar';
 import {forum} from '../data/Threads'
 
@@ -10,11 +10,13 @@ import {forum} from '../data/Threads'
 class App extends Component {
     state={
         userData: [],
-        forumData: []
+        forumData: [],
+        quizzesData: []
     }
     componentDidMount(){
         this.getUserDataFromDb();
         this.getForumDataFromDb();
+        this.getQuizDataFromDb();
     }
     
     getUserDataFromDb = () => {
@@ -29,6 +31,12 @@ class App extends Component {
           .then(res => this.setState({ forumData: res.data }));
     };
 
+    getQuizDataFromDb = () => {
+        fetch("http://localhost:3001/api/getQuizzes")
+          .then(data => data.json())
+          .then(res => this.setState({ quizzesData: res.data }));
+    };
+
     render(){
         return(
         <Router>
@@ -37,7 +45,7 @@ class App extends Component {
                 <NavBar/>
                 <Route exact path='/' component={Home} />
                 <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={forum} />} />
-             <Route exact path='/quizzes' component={QuizContainer} />
+             <Route path='/quizzes' render={routerProps => <QuizIndex {...routerProps} quizzes={this.state.quizzesData} />} />
             </React.Fragment>    
         </Router>
         );
