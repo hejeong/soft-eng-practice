@@ -15,11 +15,7 @@ const Thread = ({match, forum}) => {
                     </div>
             </div>
         )
-<<<<<<< HEAD
-}}
-=======
 }
->>>>>>> 057f049e35140d6bfaf1f312c3c6803770928a2b
             
 
 export default Thread;
