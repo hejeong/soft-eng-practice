@@ -5,6 +5,7 @@ class Quiz extends Component {
         super(props)
         const len = props.quiz.length;
         this.state = {
+            quiz: props.quiz,
             selected: new Array(len).fill(null),
             correct: new Array(len).fill(false)
         }
@@ -26,15 +27,15 @@ class Quiz extends Component {
     }
 
     render(){
-        const questions = this.props.quiz
+        const questions = this.state.quiz;
         return(
             <div>
                 {questions.map((quiz, index) => (
                 <div key={index} question={index}>
-                    <label className="question">{quiz.question}</label> <br />
+                    <label className="question">{quiz[0]}</label> <br />
                     <QuizAnswer questionNum={index} 
-                        answers={quiz.answers} 
-                        solution={quiz.solution} 
+                        answers={quiz[1]} 
+                        solution={quiz[1]} 
                         selected={this.state.selected[index]}
                         clickAction={this.handleClick}
                     />
