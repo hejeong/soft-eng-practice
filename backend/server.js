@@ -5,6 +5,7 @@ const logger = require("morgan");
 const User = require("./user");
 const Quiz = require("./quiz");
 const Forum = require("./forum");
+const CompletedQuiz = require("./completedquiz")
 
 const API_PORT = 3001;
 const app = express();
@@ -59,6 +60,32 @@ router.get("/getForums", (req, res) => {
   });
 });
 
+router.get("/getCompletedQuizzes", (req, res) => {
+  CompletedQuiz.find((err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
+router.post("/submitQuiz", (req, res) => {
+  let quiz = new CompletedQuiz();
+  
+  const { id, quizId, score } = req.body;
+  console.log({id, quizId, score})
+  if ((!id && id !== 0) || !quizId || !score) {
+    return res.json({
+      success: false,
+      error: "INVALID INPUTS"
+    });
+  }
+  quiz.id = id;  
+  quiz.quizId = quizId;
+  quiz.score = score;
+  quiz.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
 // append /api for our http requests
 app.use("/api", router);
 

@@ -10,7 +10,7 @@ const QuizIndex = ({match, quizzes}) => {
                     renderQuizIndex
                 )} />
                 {quizzes.map((quiz, index) => (
-                 <Route key={index} path={`${match.url}/${index}`}  render={(routerProps)=> <QuizContainer quiz={quizzes[index]} />} />
+                 <Route key={index} path={`${match.url}/${index}`}  render={(routerProps)=> <QuizContainer quizzes={quizzes} quizNum={index} />} />
                 ))}
             </div>
         )
