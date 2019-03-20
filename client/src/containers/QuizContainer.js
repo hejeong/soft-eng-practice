@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom';
 import Quiz from '../components/Quiz';
 import axios from "axios";
 
@@ -40,7 +41,6 @@ class QuizContainer extends Component{
     };
 
     handleSubmit = (event) => {
-        event.preventDefault();
         const numCorrect = this.state.correct.filter(value => value).length;
         this.submitQuizToDb(numCorrect);
         //console.log('Number of Correct Answers: ' + this.state.correct.filter(value => value).length)
@@ -49,9 +49,9 @@ class QuizContainer extends Component{
     render(){
         const currentQuiz = this.state.quizzes[this.state.quizNum].problems;
         return(
-            <form id="quiz-form" onSubmit={this.handleSubmit}>
+            <form id="quiz-form">
             <Quiz quiz={currentQuiz} getCurrentState={this.copyCurrentState}/>
-            <input type="submit" value="Submit Answers" />
+            <Link to='/quizzes' className="link-button" onClick={this.handleSubmit}>Submit Answers</Link>
             </form>
         )
     }

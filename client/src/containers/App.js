@@ -11,7 +11,8 @@ class App extends Component {
     state={
         userData: [],
         forumData: [],
-        quizzesData: []
+        quizzesData: [],
+        completedQuizzesData: []
     }
     componentDidMount(){
         this.getUserDataFromDb();
@@ -36,6 +37,8 @@ class App extends Component {
           .then(data => data.json())
           .then(res => this.setState({ quizzesData: res.data }));
     };
+
+  
 
     render(){
         return(
