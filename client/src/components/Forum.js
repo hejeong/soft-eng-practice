@@ -7,7 +7,7 @@ const Forum = ({ forum }) => {
   );
  
   return (
-    <div>
+    <div className='thread'>
       {renderThreads}
     </div>
   );

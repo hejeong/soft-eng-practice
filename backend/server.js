@@ -5,6 +5,7 @@ const logger = require("morgan");
 const User = require("./user");
 const Quiz = require("./quiz");
 const Forum = require("./forum");
+const forumSearchRouter = express.Router();
 
 const API_PORT = 3001;
 const app = express();
@@ -35,6 +36,21 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger("dev"));
+
+forumSearchRouter.route('/searchForum').get((req, res) => {
+  const searched = new Forum(req.body);
+  console.log('done')
+  searched.save()
+    .then(searched => {
+        res.json('Got data!!')
+        console.log('done')
+    })
+    .catch(err => {
+    res.status(400).send("unable to get data");
+    console.log('CustomerID is required', err.res);
+    });
+});
+
 
 // this is our get method
 // this method fetches all available data in our database

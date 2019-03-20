@@ -36,7 +36,7 @@ class App extends Component {
                 
                 <NavBar/>
                 <Route exact path='/' component={Home} />
-                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={forum} />} />
+                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={this.state.forumData} />} />
              <Route exact path='/quizzes' component={QuizContainer} />
             </React.Fragment>    
         </Router>
