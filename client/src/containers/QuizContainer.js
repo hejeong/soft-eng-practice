@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Quiz from '../components/Quiz';
+import {Link} from 'react-router-dom';
+import Quiz from '../components/quiz/Quiz';
+import CountdownTimer from '../components/quiz/CountdownTimer';
 import axios from "axios";
 
 class QuizContainer extends Component{
@@ -11,9 +13,26 @@ class QuizContainer extends Component{
             quizNum: props.quizNum,
             quizId: props.quizzes[props.quizNum].quizid,
             selected: [],
-            correct: []
+            correct: [],
+            time: 0
         }
     }
+
+    componentDidMount(){
+        this.startInterval();
+    }
+
+    componentWillUnmount(){
+        this.cleanUpInterval();
+    }
+
+    startInterval = () => {
+        this.interval = setInterval(this.clockTick, 1000);
+    };
+
+    cleanUpInterval = () => {
+        clearInterval(this.interval);
+    };
 
     copyCurrentState = (current) => {
         console.log(current)
@@ -40,7 +59,6 @@ class QuizContainer extends Component{
     };
 
     handleSubmit = (event) => {
-        event.preventDefault();
         const numCorrect = this.state.correct.filter(value => value).length;
         this.submitQuizToDb(numCorrect);
         //console.log('Number of Correct Answers: ' + this.state.correct.filter(value => value).length)
@@ -49,13 +67,15 @@ class QuizContainer extends Component{
     render(){
         const currentQuiz = this.state.quizzes[this.state.quizNum].problems;
         return(
-            <form id="quiz-form" onSubmit={this.handleSubmit}>
+            <form id="quiz-form">
+            <CountdownTimer />
+            <br/>
             <Quiz quiz={currentQuiz} getCurrentState={this.copyCurrentState}/>
-            <input type="submit" value="Submit Answers" />
+            <Link to='/quizzes' className="link-button" onClick={this.handleSubmit}>Submit Answers</Link>
             </form>
         )
     }
-    
+ 
 }
    
 
