@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-
+const shuffle = require('shuffle-array');
 class QuizAnswer extends Component{
     state = {
-        rightAnswer: this.props.answers[0]
+        rightAnswer: this.props.answers[0],
+        shuffledAnswers: shuffle(this.props.answers,{ 'copy': true })
     }
-
     checkSelected = (question, index) => {    
       let checkbox = document.querySelector(`[question='${question}'] [index='${index}'] [type='checkbox']`)
       if(checkbox === null){
@@ -25,11 +25,10 @@ class QuizAnswer extends Component{
     }
     
     render(){
-        const answers = this.props.answers;
         const qNum = this.props.questionNum;
         return(
             <React.Fragment>
-                {answers.map((answer, index) => (
+                {this.state.shuffledAnswers.map((answer, index) => (
                 <div key={index} 
                     index = {index}
                     className={'answer-choice' + this.checkSelected(qNum, index)}
