@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-import Quiz from '../components/Quiz';
+import Quiz from '../components/quiz/Quiz';
 import axios from "axios";
 
 class QuizContainer extends Component{

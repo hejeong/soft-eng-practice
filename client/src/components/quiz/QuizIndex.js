@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
-import QuizContainer from '../containers/QuizContainer'
+import QuizContainer from '../../containers/QuizContainer'
 const QuizIndex = ({match, quizzes}) => {
         const renderQuizIndex = quizzes.map((quiz, index) => <Link className="quiz-link" key={index} to={`/quizzes/${index}`}>Quiz {index+1}</Link>)
     

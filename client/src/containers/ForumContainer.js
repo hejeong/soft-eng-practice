@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
-import Thread from '../components/Thread'
+import Thread from '../components/forum/Thread'
 import { NavLink } from 'react-router-dom';
-import Forum from '../components/Forum';
+import Forum from '../components/forum/Forum';
 
 const ForumContainer = ({match, forum}) => (
     <div>
