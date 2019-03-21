@@ -58,15 +58,15 @@ class App extends Component {
 
     getGradesDataFromDb = () => {
         axios.get('http://localhost:3001/api/getGrades', {params: {
-            member:this.state.userInfo.id,
+            member: this.state.userInfo.id,
             classes: this.state.userInfo.classes
         }})
-        .then(data => data.json())
-        .then(res => this.setState({ gradesData: res.data }));
-        console.log(this.state.gradesData)
+        .then(res => {
+            const gradeInfo = res.data 
+            cookies.set('gradeInfo', gradeInfo, { path: '/' });
+            this.setState({ gradesData: res.data })
+        });
     };
-
-  
 
     render(){
         const info = this.state.userInfo

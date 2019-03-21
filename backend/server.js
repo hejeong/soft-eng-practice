@@ -51,13 +51,11 @@ router.get("/searchForum", (req, res) => {
 });
 
 router.get("/getGrades", (req, res) => {
-  console.log(req.query)
   Grade.find({
     'classid': '52314' ,
     //'id': req.query.member
   },
     (err, data) => {
-      console.log(data)
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });
