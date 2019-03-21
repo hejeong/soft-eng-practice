@@ -3,6 +3,8 @@ import axios from 'axios'
 import {Route} from 'react-router-dom';
 import ForumContainer from '../../containers/ForumContainer';
 import history from '../../History'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class SearchBar extends Component{
     constructor(props) {
@@ -23,9 +25,10 @@ class SearchBar extends Component{
         axios.get('http://localhost:3001/api/searchForum', {params: {title:query}})
          .then(res =>{
             const searchInfo = res.data 
-  
+            cookies.set('searchInfo', searchInfo, { path: '/forum' });
             this.setState({ searchInfo });
          })
+         
          history.push('/forum')
     };
 
@@ -48,9 +51,6 @@ class SearchBar extends Component{
                 />
                 <p>{this.state.query}</p>
             </form>
-            {(this.state.clicked && this.state.searchInfo.data) && this.state.searchInfo.data.length ?
-                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={data} />} /> : <h1>hi</h1>
-            }
             <button onClick={this.searchForum}>Search</button>
             </div>
         )   
