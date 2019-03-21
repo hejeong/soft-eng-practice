@@ -5,7 +5,6 @@ const logger = require("morgan");
 const User = require("./user");
 const Quiz = require("./quiz");
 const Forum = require("./forum");
-const forumSearchRouter = express.Router();
 const CompletedQuiz = require("./completedquiz")
 
 const API_PORT = 3001;

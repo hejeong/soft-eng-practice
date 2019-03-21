@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Thread = ({match, forum}) => {
-        console.log(match)
+        console.log('haha')
         const currentThread = forum[match.params.threadId];
         return(
            <div>
