@@ -1,8 +1,23 @@
 import React, {Component} from 'react';
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class CountdownTimer extends Component {
-   state = {
-     time: this.props.timeLimit,
+   constructor(props){
+     super(props)
+     if(!cookies.get('quizStartedAt')){
+      cookies.set('quizStartedAt', Date.now(), { path: '/' });
+     }
+     let remainingTime = Date.now() - cookies.get('quizStartedAt');
+     if(remainingTime >= props.timeLimit){
+       cookies.remove('quizStartedAt',{ path: '/' });
+       remainingTime = 0
+     }else{
+       remainingTime = (props.timeLimit-remainingTime);
+     }
+     this.state = {
+      time: remainingTime,
+     }
+     debugger
    }
 
    componentDidMount(){
@@ -14,9 +29,10 @@ class CountdownTimer extends Component {
    }
 
    render(){
-       const time = this.state.time;
+       const time = Math.round(this.state.time/1000);
        let minutes = ("0" + Math.floor(time / 60)).slice(-2);
        let seconds =  ("0" + time % 60).slice(-2);
+       debugger
        return(
          <div className="timer-box">
            <h4 className="timer" >Time Remaining: {`${minutes}:${seconds}`}</h4>
@@ -31,7 +47,7 @@ class CountdownTimer extends Component {
          this.props.autoSubmit()
      }else{
         this.setState(prevState => ({
-          time: prevState.time-1
+          time: prevState.time-1000
         }))
      }
     }
