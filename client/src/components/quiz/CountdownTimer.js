@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class CountdownTimer extends Component {
    state = {
-     time: 1200,
+     time: this.props.timeLimit,
    }
 
    componentDidMount(){
