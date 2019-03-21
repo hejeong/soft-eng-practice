@@ -21,19 +21,17 @@ class SearchBar extends Component{
         this.setState({
             clicked: true
         })
-    };
-
-    componentWillUnmount = () => {
         const query = this.state.query
         axios.get('http://localhost:3001/api/searchForum', {params: {title:query}})
          .then(res =>{
             const searchInfo = res.data 
             cookies.set('searchInfo', searchInfo, { path: '/forum' });
             this.setState({ searchInfo });
+            history.push('/forum')
          })
-         
-         history.push('/forum')
+        
     };
+
 
     handleInputChange = () => {
         this.setState({
