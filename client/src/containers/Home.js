@@ -37,6 +37,7 @@ class Home extends Component{
       
     render(){
         const data = this.state.searchInfo.data
+        console.log(data)
         return(
             <div>
             <form>

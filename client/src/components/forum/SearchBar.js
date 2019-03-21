@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios'
 import {Route} from 'react-router-dom';
 import ForumContainer from '../../containers/ForumContainer';
+import history from '../../History'
 
 class SearchBar extends Component{
     constructor(props) {
@@ -16,8 +17,7 @@ class SearchBar extends Component{
 
     searchForum = (event) => {
         this.setState({
-            clicked: true,
-            times: this.state.times + 1
+            clicked: true
         })
         const query = this.state.query
         axios.get('http://localhost:3001/api/searchForum', {params: {title:query}})
@@ -26,8 +26,7 @@ class SearchBar extends Component{
   
             this.setState({ searchInfo });
          })
-         console.log(this.state.searchInfo)
-         
+         history.push('/forum')
     };
 
     handleInputChange = () => {
@@ -38,6 +37,7 @@ class SearchBar extends Component{
       
     render(){
         const data = this.state.searchInfo.data
+        console.log(data)
         return(
             <div>
             <form>
@@ -48,10 +48,10 @@ class SearchBar extends Component{
                 />
                 <p>{this.state.query}</p>
             </form>
-            <button onClick={this.searchForum}>Search</button>
             {(this.state.clicked && this.state.searchInfo.data) && this.state.searchInfo.data.length ?
-                <Route exact path='/forumSearch' render={routerProps => <ForumContainer {...routerProps} forum={data} />} /> : <h1>{this.state.times}</h1>
+                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={data} />} /> : <h1>hi</h1>
             }
+            <button onClick={this.searchForum}>Search</button>
             </div>
         )   
     } 
