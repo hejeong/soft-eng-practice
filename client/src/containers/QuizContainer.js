@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom'
 import Quiz from '../components/quiz/Quiz';
 import CountdownTimer from '../components/quiz/CountdownTimer';
 import axios from "axios";
 import history from '../History'
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
 class QuizContainer extends Component{
     constructor(props){
         super(props)
@@ -58,10 +57,9 @@ class QuizContainer extends Component{
     };
 
     handleSubmit = () => {
-        cookies.remove('quizStartedAt',{ path: '/' });
         const numCorrect = this.state.correct.filter(value => value).length;
         this.submitQuizToDb(numCorrect);
-        history.push('/quizzes')
+        history.push('/quizzes1')
         //console.log('Number of Correct Answers: ' + this.state.correct.filter(value => value).length)
     }
 
@@ -75,6 +73,7 @@ class QuizContainer extends Component{
             <br/>
             <Quiz quiz={currentProblems} getCurrentState={this.copyCurrentState}/>
             <div className="link-button" onClick={this.handleSubmit}>Submit Answers</div>
+            <Route path='/quizzes1' render={<h1>HELLO</h1>} />
             </form>
         )
     }

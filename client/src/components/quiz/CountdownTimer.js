@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+
 class CountdownTimer extends Component {
    constructor(props){
      super(props)
@@ -17,7 +18,6 @@ class CountdownTimer extends Component {
      this.state = {
       time: remainingTime,
      }
-     debugger
    }
 
    componentDidMount(){
@@ -32,7 +32,6 @@ class CountdownTimer extends Component {
        const time = Math.round(this.state.time/1000);
        let minutes = ("0" + Math.floor(time / 60)).slice(-2);
        let seconds =  ("0" + time % 60).slice(-2);
-       debugger
        return(
          <div className="timer-box">
            <h4 className="timer" >Time Remaining: {`${minutes}:${seconds}`}</h4>
