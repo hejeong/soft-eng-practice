@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import {Route} from 'react-router-dom';
-import ForumContainer from './ForumContainer';
+import ForumContainer from '../../containers/ForumContainer';
 
-class Home extends Component{
+class SearchBar extends Component{
     constructor(props) {
         super(props)
         this.state = {
@@ -13,6 +13,7 @@ class Home extends Component{
               times: 0
         };  
     }
+
     searchForum = (event) => {
         this.setState({
             clicked: true,
@@ -49,7 +50,7 @@ class Home extends Component{
             </form>
             <button onClick={this.searchForum}>Search</button>
             {(this.state.clicked && this.state.searchInfo.data) && this.state.searchInfo.data.length ?
-                <Route path='/' render={routerProps => <ForumContainer {...routerProps} forum={data} />} /> : <h1>{this.state.times}</h1>
+                <Route exact path='/forumSearch' render={routerProps => <ForumContainer {...routerProps} forum={data} />} /> : <h1>{this.state.times}</h1>
             }
             </div>
         )   
@@ -57,4 +58,4 @@ class Home extends Component{
     
 }
 
-export default Home;
+export default SearchBar;
