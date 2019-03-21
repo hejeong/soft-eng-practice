@@ -2,21 +2,40 @@ import React, { Component } from 'react';
 import {Router, Route} from 'react-router-dom';
 import Home from '../containers/Home';
 import ForumContainer from './ForumContainer';
+import GradesContainer from './GradesContainer';
 import QuizIndex from '../components/quiz/QuizIndex';
 import NavBar from '../containers/NavBar';
 import history from '../History'
+import axios from 'axios'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class App extends Component {
-    state={
+    constructor(props){
+        super(props)
+        this.state={
         userData: [],
         forumData: [],
         quizzesData: [],
-        completedQuizzesData: []
-    }
+        completedQuizzesData: [],
+        gradesData: [],
+        userInfo: {
+            id:'tp618',
+            password:'1awUr1IoQF',
+            name: "Twyla Platfoot",
+            classes: [
+                '52314'
+            ]
+                
+        }
+        
+    }}
+    
     componentDidMount(){
         this.getUserDataFromDb();
         this.getForumDataFromDb();
         this.getQuizDataFromDb();
+        this.getGradesDataFromDb();
     }
     
     getUserDataFromDb = () => {
@@ -37,15 +56,28 @@ class App extends Component {
           .then(res => this.setState({ quizzesData: res.data }));
     };
 
+    getGradesDataFromDb = () => {
+        axios.get('http://localhost:3001/api/getGrades', {params: {
+            member:this.state.userInfo.id,
+            classes: this.state.userInfo.classes
+        }})
+        .then(data => data.json())
+        .then(res => this.setState({ gradesData: res.data }));
+        console.log(this.state.gradesData)
+    };
+
   
 
     render(){
+        const info = this.state.userInfo
+        cookies.set('userInfo', info, { path: '/' });
         return(
         <Router history={history}>
             <React.Fragment>
                 
                 <NavBar/>
                 <Route exact path='/' component={Home} />
+                <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps} grades={this.state.gradesData}/>} />
                 <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={this.state.forumData}/> }/>
                 <Route path='/quizzes' render={routerProps => <QuizIndex {...routerProps} quizzes={this.state.quizzesData} />} />
             </React.Fragment>    

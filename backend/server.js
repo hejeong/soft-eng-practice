@@ -6,6 +6,7 @@ const User = require("./user");
 const Quiz = require("./quiz");
 const Forum = require("./forum");
 const CompletedQuiz = require("./completedquiz")
+const Grade = require("./Grade")
 
 const API_PORT = 3001;
 const app = express();
@@ -39,11 +40,24 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 
 router.get("/searchForum", (req, res) => {
-  console.log(req.query.title)
+  console.log(req.query)
   Forum.find({
     'title': req.query.title
   },
     (err, data) => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true, data: data });
+  });
+});
+
+router.get("/getGrades", (req, res) => {
+  console.log(req.query)
+  Grade.find({
+    'classid': '52314' ,
+    //'id': req.query.member
+  },
+    (err, data) => {
+      console.log(data)
     if (err) return res.json({ success: false, error: err });
     return res.json({ success: true, data: data });
   });

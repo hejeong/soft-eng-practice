@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import {Route} from 'react-router-dom';
-import ForumContainer from '../../containers/ForumContainer';
-import history from '../../History'
 import Cookies from 'universal-cookie';
+import { Link } from 'react-router-dom';
 const cookies = new Cookies();
 
 class SearchBar extends Component{
@@ -27,9 +25,7 @@ class SearchBar extends Component{
             const searchInfo = res.data 
             cookies.set('searchInfo', searchInfo, { path: '/forum' });
             this.setState({ searchInfo });
-            history.push('/forum')
          })
-        
     };
 
 
@@ -52,7 +48,7 @@ class SearchBar extends Component{
                 />
                 <p>{this.state.query}</p>
             </form>
-            <button onClick={this.searchForum}>Search</button>
+            <Link to="/forum" exact> <button onClick={this.searchForum}>Search</button></Link>
             </div>
         )   
     } 
