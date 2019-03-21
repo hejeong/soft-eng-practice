@@ -40,7 +40,7 @@ body {
 }
 
 .forum {
-    background-color: gray;
+    background-color: rgb(212, 212, 216);
     position: relative;
     top: 80px;
     left: 50%;
@@ -63,12 +63,14 @@ body {
 }
 
 .thread {
-    display: inline-block;
     text-align: center;
-    background-color: black;
+    outline-color: rgb(53, 53, 53);
+    outline-width: 3px;
+    outline-style: solid;
+    background-color: rgb(223, 225, 240);
     position: relative;
-    width: 85%;
-    height: 100px;
+    width: 93%;
+    height: 75px;
     top:20px;
 }
 

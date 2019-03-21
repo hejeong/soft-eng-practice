@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios'
 import Cookies from 'universal-cookie';
+import history from '../../History'
 import { Link } from 'react-router-dom';
 const cookies = new Cookies();
 
@@ -24,7 +25,6 @@ class SearchBar extends Component{
          .then(res =>{
             const searchInfo = res.data 
             cookies.set('searchInfo', searchInfo, { path: '/forum' });
-            this.setState({ searchInfo });
          })
     };
 

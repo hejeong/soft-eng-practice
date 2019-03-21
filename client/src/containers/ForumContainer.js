@@ -14,6 +14,7 @@ const ForumContainer = ({match, forum}) => {
     }
     return(
     <div className='forum'>
+        <br/>
         <SearchBar/>
         <Route exact path={match.url} render={()=>(
              <Forum forum={forum} />
