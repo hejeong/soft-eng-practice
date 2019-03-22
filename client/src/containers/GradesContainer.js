@@ -11,7 +11,7 @@ const GradeContainer = ({match, grades}) => {
         {(classInfo.members).map((member, index) => (
             <div>
             {(member === userInfo.id) ? 
-                <GradeBox> {classInfo.className} {classInfo.grades[index]} </GradeBox> : null
+                <GradeBox name={classInfo.className} grade={classInfo.grades[index]}/> : null
             }
             </div>
         ))}

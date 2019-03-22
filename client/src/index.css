@@ -62,6 +62,36 @@ body {
     margin-bottom:20px;
 }
 
+.gradebox {
+    background-color: rgb(212, 212, 216);
+    top: 20px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 95%;
+    height: 200px;
+}
+
+.grade {
+    outline-color: rgb(128, 128, 128);
+    outline-width: 3px;
+    outline-style: solid;
+    color:black;
+    background-color: rgb(223, 225, 240);
+    height: 50px;
+    position: relative;
+}
+
+.grade.right{
+    width: 75%;
+    float:right;
+}
+
+.grade.left{
+    width: 25%;
+    float:left;
+}
+
 .thread {
     text-align: center;
     outline-color: rgb(53, 53, 53);
