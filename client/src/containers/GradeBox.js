@@ -4,19 +4,23 @@ class GradeBox extends Component{
     constructor(props){
         super(props)
         this.state = {
-            className: this.props.name,
-            classGrade: this.props.grade
+            grades: this.props.grades,
+            assignments: this.props.assignments
         }
     }
     render(){
         return(
             <div className='gradebox'>
-            <div className='grade left'>
-                {this.state.className}
-            </div>
-            <div className='grade right'>
-                {this.state.classGrade}
-            </div>
+                {(this.state.assignments).map( (assignment, index) => (
+                    <>
+                    <div className='grade left'> 
+                        {assignment}
+                    </div>
+                    <div className='grade right'>
+                        {this.state.grades[index]}
+                    </div>
+                    </>
+                ))}
             </div>
             )
     }
