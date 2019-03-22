@@ -20,11 +20,12 @@ class App extends Component {
         completedQuizzesData: [],
         gradesData: [],
         userInfo: {
-            id:'tp618',
-            password:'1awUr1IoQF',
-            name: "Twyla Platfoot",
+            id:"pb431",
+            password:'rKZJhyu',
+            name: "Patricia Battipaglia",
             classes: [
-                '52314'
+                '52314',
+                '12345'
             ]
                 
         }
@@ -74,7 +75,6 @@ class App extends Component {
         return(
         <Router history={history}>
             <React.Fragment>
-                
                 <NavBar/>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps} grades={this.state.gradesData}/>} />

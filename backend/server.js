@@ -40,7 +40,6 @@ app.use(bodyParser.json());
 app.use(logger("dev"));
 
 router.get("/searchForum", (req, res) => {
-  console.log(req.query)
   Forum.find({
     'title': req.query.title
   },
@@ -51,9 +50,9 @@ router.get("/searchForum", (req, res) => {
 });
 
 router.get("/getGrades", (req, res) => {
+  console.log(req.query)
   Grade.find({
-    'classid': '52314' ,
-    //'id': req.query.member
+    'classid': {$in:req.query.classes}
   },
     (err, data) => {
     if (err) return res.json({ success: false, error: err });
