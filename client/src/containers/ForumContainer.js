@@ -2,7 +2,6 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import Thread from '../components/forum/Thread'
 import Forum from '../components/forum/Forum';
-import SearchBar from '../components/forum/SearchBar';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -14,7 +13,11 @@ const ForumContainer = ({match, forum}) => {
     }
     return(
     <div className='forum'>
+<<<<<<< HEAD
         <SearchBar/>
+=======
+        <br/>
+>>>>>>> 803d29ef0e9bea5cb829ed703567ed7d29b97adb
         <Route exact path={match.url} render={()=>(
              <Forum forum={forum} />
         )} />
