@@ -4,6 +4,8 @@ import Quiz from '../components/quiz/Quiz';
 import CountdownTimer from '../components/quiz/CountdownTimer';
 import axios from "axios";
 import history from '../History'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 class QuizContainer extends Component{
     constructor(props){
         super(props)
