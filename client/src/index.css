@@ -41,6 +41,7 @@ body {
 
 .forum {
     background-color: rgb(212, 212, 216);
+    color:black;
     position: relative;
     top: 80px;
     left: 50%;
@@ -60,17 +61,35 @@ body {
     text-align: left;
 }
 
-.post {
-    font-size: 500%;
+.nameBar{
+    text-align: left;
     background-color: rgb(179, 179, 179);
     position: relative;
-    width: 99%;
+    outline-color: rgb(128, 128, 128);
+    outline-width: 3px;
+    outline-style: solid;
+    width: 100%;
     left: 50%;
     transform: translate(-50%, 0);
-    height: 500px;
-    top:20px;
-    margin-top:20px;
-    margin-bottom:20px;
+    height: 30px;
+}
+
+.post {
+    text-align: left;
+    background-color: rgb(179, 179, 179);
+    position: relative;
+    outline-color: rgb(128, 128, 128);
+    outline-width: 3px;
+    outline-style: solid;
+    width: 98%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    height: 200px;
+    padding:1%;
+}
+
+.endorsed {
+    outline-color: rgb(60, 196, 60)
 }
 
 .gradebox {

@@ -56,11 +56,6 @@ const GradeContainer = ({match, grades}) => {
     </>
     </div>
     </div>
-
-    /*<div className='forum'>
-        {console.log(display)}
-        {display}
-    </div>*/
     )
 }
 

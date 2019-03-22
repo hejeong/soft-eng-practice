@@ -5,13 +5,31 @@ const Thread = ({match, forum}) => {
         const currentThread = forum[match.params.threadId];
         return(
            <div>
-                    <h1>{currentThread.title}</h1>
                     <div className='forum'>
-                    {currentThread.posts.map((posts, index) => (
-                            <div className='post'>
-                                {posts}
-                            </div>
-                    ))}
+                    <h1>{currentThread.title}</h1>
+                    {currentThread.posts.map((posts, index) => 
+                        <>
+                        {(index === currentThread.endorsed) ?
+                                <>
+                                        <div className='nameBar endorsed'>
+                                                {currentThread.users[index]}
+                                        </div>
+                                        <div className='post endorsed'>
+                                                {posts}
+                                        </div>
+                                        <br/>
+                                </> 
+                        :
+                                <>
+                                        <div className='nameBar'>
+                                                {currentThread.users[index]}
+                                        </div>
+                                        <div className='post'>
+                                                {posts}
+                                        </div>
+                                        <br/>
+                                </>
+                        }</>)}
                     </div>
             </div>
         )
