@@ -25,7 +25,11 @@ class SearchBar extends Component{
          .then(res =>{
             const searchInfo = res.data 
             cookies.set('searchInfo', searchInfo, { path: '/forum' });
+            this.setState({
+                searchInfo:searchInfo
+            })
          })
+
     };
 
 

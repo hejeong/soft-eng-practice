@@ -1,4 +1,5 @@
 import React from 'react';
+import GradeBox from './GradeBox'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -10,7 +11,7 @@ const GradeContainer = ({match, grades}) => {
         {(classInfo.members).map((member, index) => (
             <div>
             {(member === userInfo.id) ? 
-                <h1> {classInfo.className} {classInfo.grades[index]} </h1> : null
+                <GradeBox> {classInfo.className} {classInfo.grades[index]} </GradeBox> : null
             }
             </div>
         ))}
