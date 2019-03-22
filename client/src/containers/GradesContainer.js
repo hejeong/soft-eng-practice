@@ -19,7 +19,7 @@ const Tree = memo(({ children, name, style, open = false }) => {
     const Icon = Icons[`${children ? (isOpen ? 'Minus' : 'Plus') : 'Close'}SquareO`]
     return (
       <Frame>
-        <Icon style={{ ...toggle, opacity: children ? 1 : 0.3 }} onClick={() => setOpen(!isOpen)} />
+        <Icon style={{ ...toggle, 'font-size':'40px', opacity: children ? 1 : 0.3 }} onClick={() => setOpen(!isOpen)} />
         <span style={{ verticalAlign: 'middle', ...style }}>{name}</span>
         <Content style={{ opacity, height: isOpen && previous === isOpen ? 'auto' : height, }}>
           <animated.div style={{ transform }} {...bind}>
@@ -30,29 +30,19 @@ const Tree = memo(({ children, name, style, open = false }) => {
     )
   })
 
+
 const GradeContainer = ({match, grades}) => {
     const classes = grades.data
     const userInfo = cookies.get('userInfo');
-    const display = (classes).map( classInfo => (
-        <div>
-        {(classInfo.members).map((member, index) => (
-            <div>
-            {(member === userInfo.id) ? 
-                <GradeBox name={classInfo.className} grades={classInfo.grades[index]} assignments={classInfo.assignments}/> : null
-            }
-            </div>
-        ))}
-        </div>
-    ))
        
     return(
     <div className='gradebook'>
     <div style={{marginLeft:'10px'}}>
     <>
     <Global/>
-    <Tree name="Classes" style={{ color: 'black' }} open>
+    <Tree name="Classes" style={{ color: 'black', 'font-size': '40px' }} open>
         {(classes).map( classInfo => (
-            <Tree name={classInfo.className} style={{ color: 'black' }}>
+            <Tree name={classInfo.className} style={{ color: 'black', 'font-size': '40px'  }}>
             {(classInfo.members).map((member, index) => (
                 <div>
                     {(member === userInfo.id) ? 
