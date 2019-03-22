@@ -46,7 +46,8 @@ const GradeContainer = ({match, grades}) => {
     ))
        
     return(
-    <div className='forum'>
+    <div className='gradebook'>
+    <div style={{marginLeft:'10px'}}>
     <>
     <Global/>
     <Tree name="Classes" style={{ color: 'black' }} open>
@@ -63,6 +64,7 @@ const GradeContainer = ({match, grades}) => {
         ))}
     </Tree>
     </>
+    </div>
     </div>
 
     /*<div className='forum'>

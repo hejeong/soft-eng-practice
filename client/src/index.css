@@ -49,6 +49,17 @@ body {
     height: 8000px;
 }
 
+.gradebook {
+    background-color: rgb(212, 212, 216);
+    position: relative;
+    top: 80px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    width: 75%;
+    height: 8000px;
+    text-align: left;
+}
+
 .post {
     font-size: 500%;
     background-color: rgb(179, 179, 179);
