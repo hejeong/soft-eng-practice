@@ -6,9 +6,8 @@ import { NavLink } from 'react-router-dom';
 function NavBar() {
     const [toggle, set] = useState(true)
     const move = useSpring({
-        marginLeft: toggle ? -320 : -20,
-        opacity: toggle ? 1 : 1,
-        from: { marginLeft: -320, opacity: 0},
+        marginLeft: toggle ? '-15%' : '-2%',
+        from: { marginLeft: '-15%'},
     })
     
     return(
