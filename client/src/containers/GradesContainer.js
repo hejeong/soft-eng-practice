@@ -46,12 +46,12 @@ const GradeContainer = ({match, grades}) => {
     ))
        
     return(
-    <div className='gradebook'>
+    <div className='forum'>
     <>
     <Global/>
-    <Tree name="Classes" open>
+    <Tree name="Classes" style={{ color: 'black' }} open>
         {(classes).map( classInfo => (
-            <Tree name={classInfo.className}>
+            <Tree name={classInfo.className} style={{ color: 'black' }}>
             {(classInfo.members).map((member, index) => (
                 <div>
                     {(member === userInfo.id) ? 
