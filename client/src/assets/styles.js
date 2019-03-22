@@ -15,8 +15,8 @@ const Global = createGlobalStyle`
     overflow: hidden;
     font-family: 'Monospaced Number', 'Chinese Quote', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
       'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 14px;
-    line-height: 21px;
+    font-size: 25px;
+    line-height: 42px;
   }
   html,
   body,
