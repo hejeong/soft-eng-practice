@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Router, Route} from 'react-router-dom';
 import Home from '../containers/Home';
+import Register from '../containers/Register';
+import Login from '../containers/Login';
 import ForumContainer from './ForumContainer';
 import GradesContainer from './GradesContainer';
 import QuizIndex from '../components/quiz/QuizIndex';
@@ -77,6 +79,8 @@ class App extends Component {
             <React.Fragment>
                 <NavBar/>
                 <Route exact path='/' component={Home} />
+                <Route exact path='/register' component={Register} />
+                <Route exact path='/login' component={Login} />
                 <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps} grades={this.state.gradesData}/>} />
                 <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={this.state.forumData}/> }/>
                 <Route path='/quizzes' render={routerProps => <QuizIndex {...routerProps} quizzes={this.state.quizzesData} />} />

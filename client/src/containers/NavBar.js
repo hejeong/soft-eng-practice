@@ -20,6 +20,8 @@ function NavBar() {
         <NavLink className='navButton' to="/forum" exact>Forum</NavLink>
         <NavLink className='navButton' to="/quizzes" exact>Quizzes</NavLink> 
         <NavLink className='navButton' to="/grades" exact>Grades</NavLink>
+        <NavLink className='navButton' to="/register" exact>Register</NavLink>
+        <NavLink className='navButton' to="/login" exact>Login</NavLink>
         </animated.div>
     )
 }
