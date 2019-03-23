@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import {Router, Route} from 'react-router-dom';
 import Home from '../containers/Home';
-import Register from '../containers/Register';
-import Login from '../containers/Login';
+import Register from './user-authentication/Register';
+import Login from './user-authentication/Login';
 import ForumContainer from './ForumContainer';
-import GradesContainer from './GradesContainer';
+import GradesContainer from './gradebook/GradesContainer';
 import QuizIndex from '../components/quiz/QuizIndex';
 import NavBar from '../containers/NavBar';
-import history from '../History'
-import axios from 'axios'
-import Cookies from 'universal-cookie';
+import history from '../History';
+import axios from 'axios';
+import Cookies from 'universal-cookie'
+import {checkLoggedIn} from '../login-helpers';
 const cookies = new Cookies();
-
 class App extends Component {
     constructor(props){
         super(props)
@@ -21,16 +21,7 @@ class App extends Component {
         quizzesData: [],
         completedQuizzesData: [],
         gradesData: [],
-        userInfo: {
-            id:"pb431",
-            password:'rKZJhyu',
-            name: "Patricia Battipaglia",
-            classes: [
-                '52314',
-                '12345'
-            ]
-                
-        }
+        userInfo: []
         
     }}
     
@@ -72,12 +63,9 @@ class App extends Component {
     };
 
     render(){
-        const info = this.state.userInfo
-        cookies.set('userInfo', info, { path: '/' });
         return(
         <Router history={history}>
             <React.Fragment>
-            <h1 className='App-title'>Welcome to React</h1>
                 <NavBar/>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/register' component={Register} />

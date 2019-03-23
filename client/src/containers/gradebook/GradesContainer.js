@@ -3,9 +3,11 @@ import GradeBox from './GradeBox'
 import Cookies from 'universal-cookie';
 import { memo, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
-import { useMeasure, usePrevious } from '../components/tree list/helpers'
-import { Global, Frame, Content, toggle } from '../assets/styles'
-import * as Icons from '../assets/icons'
+import { useMeasure, usePrevious } from '../../components/tree list/helpers'
+import { Global, Frame, Content, toggle } from '../../assets/styles'
+import * as Icons from '../../assets/icons'
+import {checkLoggedIn} from '../../login-helpers';
+
 const cookies = new Cookies();
 
 const Tree = memo(({ children, name, style, open = false }) => {
@@ -34,7 +36,7 @@ const Tree = memo(({ children, name, style, open = false }) => {
 const GradeContainer = ({match, grades}) => {
     const classes = grades.data
     const userInfo = cookies.get('userInfo');
-       
+    checkLoggedIn();
     return(
     <div className='gradebook'>
     <div style={{marginLeft:'10px'}}>

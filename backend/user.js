@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 // this will be our data base's data structure 
 const UserSchema = new Schema(
   {
-    id: Number,
+    name: String,
+    id: String,
     password: String,
-    name: String
+    classes: Array
   },
   { timestamps: true }
 );

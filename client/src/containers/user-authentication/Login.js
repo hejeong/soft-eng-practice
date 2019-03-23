@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-
+import history from '../../History'
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Login extends Component{
     constructor(props) {
@@ -20,8 +22,15 @@ class Login extends Component{
             console.log("must enter values in all required fields...")
         }
         else{
-         console.log('username:', username, '\npassword:', password);
+         console.log('id:', username, '\npassword:', password);
          //CHECK THAT SHIT IN THE DATABASE
+            axios.get('http://localhost:3001/api/loginUser', {params: {id:username, password:password}})
+            .then(res =>{
+               const data = res.data
+               cookies.set('userInfo', data, {path: '/'})
+               console.log(cookies.get('userInfo'))
+               history.push('/forum')
+            })
         }
       }
       

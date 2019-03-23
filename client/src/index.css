@@ -187,7 +187,7 @@ button {
 }
 
 .active {
-    background: #86c5a6;
+    background: #c300ff;
 }
 
 .correct-answer{
@@ -332,4 +332,8 @@ button {
     display: inline-block;
     padding-right: 5px;
     float: right;
+}
+
+.logout {
+    background: rgba(255, 251, 0, 0.438);
 }

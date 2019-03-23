@@ -3,9 +3,9 @@ import {Route} from 'react-router-dom';
 import Thread from '../components/forum/Thread'
 import Forum from '../components/forum/Forum';
 import NewPostBar from '../components/forum/NewPostBar'
-
+import {checkLoggedIn} from '../login-helpers';
 const ForumContainer = ({match, forum}) => {
-
+    checkLoggedIn();
     return(
         <>
         <NewPostBar/>

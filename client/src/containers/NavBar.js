@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import { useSpring, animated } from 'react-spring';
 import { NavLink } from 'react-router-dom';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 //import MenuButton from '../components/MenuButton';
 
 function NavBar() {
@@ -9,7 +11,7 @@ function NavBar() {
         marginLeft: toggle ? '-15%' : '-2%',
         from: { marginLeft: '-15%'},
     })
-    
+
     return(
         <animated.div
         className='sideBar'
@@ -22,6 +24,7 @@ function NavBar() {
         <NavLink className='navButton' to="/grades" exact>Grades</NavLink>
         <NavLink className='navButton' to="/register" exact>Register</NavLink>
         <NavLink className='navButton' to="/login" exact>Login</NavLink>
+        <NavLink className='navButton logout' to="/" exact onClick={cookies.remove('userInfo', {path: '/'})}>Log Out</NavLink>
         </animated.div>
     )
 }

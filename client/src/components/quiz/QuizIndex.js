@@ -2,9 +2,9 @@ import React from 'react';
 import { Route, Link } from 'react-router-dom'
 import QuizContainer from '../../containers/QuizContainer'
 import Cookies from 'universal-cookie';
-
+import {checkLoggedIn} from '../../login-helpers';
 const QuizIndex = ({match, quizzes}) => {
-
+    checkLoggedIn();
         const cookies = new Cookies();
         const renderQuizIndex = quizzes.map((quiz, index) => <Link className="quiz-link" 
                                                                     key={index} 

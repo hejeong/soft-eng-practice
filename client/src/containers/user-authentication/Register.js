@@ -28,6 +28,12 @@ class Register extends Component{
         else{
          console.log('name:', fullname, '\nusername:', username, '\npassword:', password);
          //ADD THAT SHIT TO THE DATABASE
+         axios.post("http://localhost:3001/api/registerUser", {
+            name: fullname,
+            username: username,
+            password: password
+          })
+          .then(res => console.log(res.data));
         }
       }
       
