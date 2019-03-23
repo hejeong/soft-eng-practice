@@ -20,21 +20,9 @@ class App extends Component {
         forumData: [],
         quizzesData: [],
         completedQuizzesData: [],
-<<<<<<< HEAD
         gradesData: [],
         userInfo: []
         
-=======
-        userInfo: {
-            id:"pb431",
-            password:'rKZJhyu',
-            name: "Patricia Battipaglia",
-            classes: [
-                '52314',
-                '12345'
-            ]    
-        }
->>>>>>> 92706a8fced92ddefdcffe3c872be527073250ab
     }}
     
     componentDidMount(){

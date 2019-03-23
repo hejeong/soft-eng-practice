@@ -19,7 +19,8 @@
   },
   "homepage": "https://github.com/hejeong/soft-eng-practice#readme",
   "dependencies": {
-    "concurrently": "^4.1.0"
+    "concurrently": "^4.1.0",
+    "history": "^4.9.0"
   },
   "browserslist": [
     ">0.2%",

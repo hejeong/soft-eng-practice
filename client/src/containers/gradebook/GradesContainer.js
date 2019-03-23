@@ -1,5 +1,5 @@
 import React from 'react';
-import GradeBox from '../components/grades/GradeBox'
+import GradeBox from '../../components/grades/GradeBox'
 import Cookies from 'universal-cookie';
 import { memo, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
