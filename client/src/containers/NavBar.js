@@ -12,6 +12,25 @@ function NavBar() {
         from: { marginLeft: '-15%'},
     })
 
+    const logout = () => {
+        console.log('hi')
+        cookies.remove('userId', {path: '/'})
+        cookies.remove('userName', {path: '/'});
+        cookies.remove('userClasses', {path: '/'});
+    }
+
+    if(!cookies.get('userId')){
+        return(
+            <animated.div
+            className='sideBar'
+            onMouseEnter={() => set(state => !state)}
+            onMouseLeave={() => set(state => !state)}
+            style={move}>
+            <NavLink className='navButton' to="/" exact>Home</NavLink>
+            </animated.div>
+        )
+    }
+
     return(
         <animated.div
         className='sideBar'
@@ -22,9 +41,7 @@ function NavBar() {
         <NavLink className='navButton' to="/forum" exact>Forum</NavLink>
         <NavLink className='navButton' to="/quizzes" exact>Quizzes</NavLink> 
         <NavLink className='navButton' to="/grades" exact>Grades</NavLink>
-        <NavLink className='navButton' to="/register" exact>Register</NavLink>
-        <NavLink className='navButton' to="/login" exact>Login</NavLink>
-        <NavLink className='navButton logout' to="/" exact onClick={cookies.remove('userInfo', {path: '/'})}>Log Out</NavLink>
+        <NavLink className='navButton logout' to="/" exact onClick={logout}>Log Out</NavLink>
         </animated.div>
     )
 }

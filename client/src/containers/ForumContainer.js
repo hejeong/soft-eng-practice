@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 import Thread from '../components/forum/Thread'
 import Forum from '../components/forum/Forum';
-import {checkLoggedIn} from '../login-helpers';
 import NewThreadBar from '../components/forum/NewThreadBar'
 import axios from 'axios'
 import Cookies from 'universal-cookie';
@@ -25,11 +24,15 @@ class ForumContainer extends Component{
     };
     
     componentDidMount(){
-        checkLoggedIn();
         this.getForumDataFromDb();
     }
 
     render(){
+          //authentication
+    if(!cookies.get('userId')){
+        cookies.set('redirectPath', '/forum', {path: '/'} )
+        return(<Redirect to='/login'/>)
+      }
     return(
         <>
         <NewThreadBar/>

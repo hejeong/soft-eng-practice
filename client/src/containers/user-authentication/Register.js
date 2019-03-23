@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
+import {Redirect} from 'react-router-dom';
 import axios from 'axios'
-
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Register extends Component{
     constructor(props) {
@@ -8,7 +10,8 @@ class Register extends Component{
         this.state = {
               fullname: "",
               username: "",
-              password: ""
+              password: "",
+              userData: []
         };  
     }
 
@@ -26,18 +29,22 @@ class Register extends Component{
             console.log("passwords dont match");
         }
         else{
-         console.log('name:', fullname, '\nusername:', username, '\npassword:', password);
          //ADD THAT SHIT TO THE DATABASE
          axios.post("http://localhost:3001/api/registerUser", {
             name: fullname,
             id: username,
             password: password
           })
-          .then(res => console.log(res.data));
+          .then(res => this.setState({userData: {name: fullname, id: username}}))
         }
       }
       
       render() {
+        if(this.state.userData.length !== 0){
+            cookies.set('userId', this.state.userData.id, {path: '/'})
+            cookies.set('userName', this.state.userData.name, {path: '/'})
+            return(<Redirect to='/'/>)
+        }
         return (
           <form onSubmit={this.handleSignUp.bind(this)}>
             <h3>Register</h3>

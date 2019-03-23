@@ -1,15 +1,18 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom'
+import { Route, Link, Redirect } from 'react-router-dom'
 import QuizContainer from '../../containers/QuizContainer'
 import Cookies from 'universal-cookie';
-import {checkLoggedIn} from '../../login-helpers';
+const cookies = new Cookies();
+
 const QuizIndex = ({match, quizzes}) => {
-    checkLoggedIn();
-        const cookies = new Cookies();
+      //authentication
+      if(!cookies.get('userId')){
+        cookies.set('redirectPath', '/quizzes', {path: '/'} )
+        return(<Redirect to='/login'/>)
+      }
         const renderQuizIndex = quizzes.map((quiz, index) => <Link className="quiz-link" 
                                                                     key={index} 
                                                                     to={`/quizzes/${quiz.quizid}`}>Quiz {index+1}</Link>)
-
         return(
             <div>              
                 <Route exact path={match.url} render={()=>(

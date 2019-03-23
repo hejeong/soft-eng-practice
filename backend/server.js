@@ -125,7 +125,7 @@ router.post("/registerUser", (req, res) => {
 
 router.post("/submitQuiz", (req, res) => {
   let quiz = new CompletedQuiz();
-  
+  console.log(req)
   const { id, quizId, score } = req.body;
   console.log({id, quizId, score})
   if ((!id && id !== 0) || !quizId || (!score && score !== 0)) {
@@ -145,7 +145,6 @@ router.post("/submitQuiz", (req, res) => {
 
 router.post("/submitThread", (req, res) => {
   let thread = new Forum();
-
   const title = req.body.title
   const posts = req.body.posts 
   const users = req.body.users

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Router, Route} from 'react-router-dom';
+import {Router, Route, Link, Redirect} from 'react-router-dom';
 import Home from '../containers/Home';
 import Register from './user-authentication/Register';
 import Login from './user-authentication/Login';
@@ -7,11 +7,11 @@ import ForumContainer from './ForumContainer';
 import GradesContainer from './gradebook/GradesContainer';
 import QuizIndex from '../components/quiz/QuizIndex';
 import NavBar from '../containers/NavBar';
-import history from '../History';
+import history from '../History'; 
 import axios from 'axios';
 import Cookies from 'universal-cookie'
-import {checkLoggedIn} from '../login-helpers';
 const cookies = new Cookies();
+
 class App extends Component {
     constructor(props){
         super(props)

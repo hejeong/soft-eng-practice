@@ -1,16 +1,20 @@
 import React from 'react';
 import GradeBox from '../../components/grades/GradeBox'
 import Cookies from 'universal-cookie';
-import { memo, useState } from 'react'
+import { memo, useState } from 'react';
+import {Redirect} from 'react-router-dom';
 import { useSpring, animated } from 'react-spring'
 import { useMeasure, usePrevious } from '../../components/tree list/helpers'
 import { Global, Frame, Content, toggle } from '../../assets/styles'
 import * as Icons from '../../assets/icons'
-import {checkLoggedIn} from '../../login-helpers';
 
 const cookies = new Cookies();
 
 const Tree = memo(({ children, name, style, open = false }) => {
+    if(!cookies.get('userId')){
+      cookies.set('redirectPath', '/grades', {path: '/'} )
+      return(<Redirect to='/login'/>)
+    }
     const [isOpen, setOpen] = useState(open)
     const previous = usePrevious(isOpen)
     const [bind, { height: viewHeight }] = useMeasure()
@@ -19,6 +23,7 @@ const Tree = memo(({ children, name, style, open = false }) => {
       to: { height: isOpen ? viewHeight : 0, opacity: isOpen ? 1 : 0, transform: `translate3d(${isOpen ? 0 : 20}px,0,0)` }
     })
     const Icon = Icons[`${children ? (isOpen ? 'Minus' : 'Plus') : 'Close'}SquareO`]
+    //authentication
     return (
       <Frame>
         <Icon style={{ ...toggle, 'font-size':'40px', opacity: children ? 1 : 0.3 }} onClick={() => setOpen(!isOpen)} />
@@ -36,7 +41,6 @@ const Tree = memo(({ children, name, style, open = false }) => {
 const GradeContainer = ({match, grades}) => {
     const classes = grades.data
     const userInfo = cookies.get('userInfo');
-    checkLoggedIn();
     return(
     <div className='gradebook'>
     <div style={{marginLeft:'10px'}}>

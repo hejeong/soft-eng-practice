@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios'
-import history from '../../History'
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
+import history from '../../History';
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
 
@@ -9,7 +10,8 @@ class Login extends Component{
         super(props)
         this.state = {
               username: "",
-              password: ""
+              password: "",
+              userData: []
         };  
     }
 
@@ -26,15 +28,24 @@ class Login extends Component{
          //CHECK THAT SHIT IN THE DATABASE
             axios.get('http://localhost:3001/api/loginUser', {params: {id:username, password:password}})
             .then(res =>{
-               const data = res.data
-               cookies.set('userInfo', data, {path: '/'})
-               console.log(cookies.get('userInfo'))
-               history.push('/forum')
-            })
+                return res.data
+             })
+             .then(data => this.setState({
+                userData: data
+             }))
         }
       }
       
       render() {
+          if(this.state.userData.length !== 0){
+              cookies.set('userId', this.state.userData.id, {path: '/'})
+              cookies.set('userName', this.state.userData.name, {path: '/'})
+              cookies.set('userClasses', this.state.userData.classes, {path: '/'})
+              const nextUrl = cookies.get('redirectPath')
+              console.log(nextUrl)
+              cookies.remove('redirectPath', {path: '/'})
+              return(<Redirect to={`${nextUrl}`} />)
+          }
         return (
           <form onSubmit={this.handleLogin.bind(this)}>
             <h3>Login</h3>
@@ -43,6 +54,7 @@ class Login extends Component{
                 <div>
                     <input type="text" ref="username" placeholder="enter NetID"></input>
                 </div>
+                <h4>{this.state.userData}</h4>
             </div>
             <div>
                 <label>Password:</label>

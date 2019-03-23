@@ -338,3 +338,7 @@ button {
 .logout {
     background: rgba(255, 251, 0, 0.438);
 }
+
+.login-button {
+    margin: 2px;
+}

@@ -1,21 +1,29 @@
 import React, {Component} from 'react';
 import axios from 'axios'
-import {Route} from 'react-router-dom';
+import {Route, Link} from 'react-router-dom';
 import ForumContainer from './ForumContainer';
-import {checkLoggedIn} from '../login-helpers';
+import Cookies from 'universal-cookie';
+import history from '../History'
+const cookies = new Cookies();
 class Home extends Component{
     constructor(props) {
         super(props)
-        checkLoggedIn();
         this.state = {
             
         };  
     }
       
     render(){
+        if(!!cookies.get('userId')){
+            return(<div>Welcome, {cookies.get('userName')}!</div>)
+        }
+        cookies.set('redirectPath', '/', {path: '/'} )
         return(
             <div>
                 this is home
+                <br></br>
+                <Link to='/login'><button className="login-button">Login</button></Link>
+                <Link to='/register'><button className="login-button">Register</button></Link>
             </div>
         )   
     } 
