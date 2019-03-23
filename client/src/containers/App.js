@@ -76,6 +76,7 @@ class App extends Component {
         return(
         <Router history={history}>
             <React.Fragment>
+            <h1 className='App-title'>Welcome to React</h1>
                 <NavBar/>
                 <Route exact path='/' component={Home} />
                 <Route exact path='/register' component={Register} />
