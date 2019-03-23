@@ -5,7 +5,6 @@ const Schema = mongoose.Schema;
 const ForumSchema = new Schema(
   {
     title: String,
-    id: Number,
     posts: Array,
     users: Array,
     endorsed: Number

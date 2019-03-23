@@ -142,6 +142,29 @@ router.post("/submitQuiz", (req, res) => {
     return res.json({ success: true });
   });
 });
+
+router.post("/submitThread", (req, res) => {
+  let thread = new Forum();
+
+  const title = req.body.title
+  const posts = req.body.posts 
+  const users = req.body.users
+  /*if ((!id && id !== 0) || !quizId || (!score && score !== 0)) {
+    return res.json({
+      success: false,
+      error: "INVALID INPUTS"
+    });
+  }*/
+  thread.title = title;  
+  thread.posts[0] = posts;
+  thread.users[0] = users;
+  thread.endorsed = "2";
+  thread.save(err => {
+    if (err) return res.json({ success: false, error: err });
+    return res.json({ success: true });
+  });
+});
+
 // append /api for our http requests
 app.use("/api", router);
 

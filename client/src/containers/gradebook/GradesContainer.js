@@ -1,5 +1,5 @@
 import React from 'react';
-import GradeBox from './GradeBox'
+import GradeBox from '../components/grades/GradeBox'
 import Cookies from 'universal-cookie';
 import { memo, useState } from 'react'
 import { useSpring, animated } from 'react-spring'
@@ -42,11 +42,11 @@ const GradeContainer = ({match, grades}) => {
     <div style={{marginLeft:'10px'}}>
     <>
     <Global/>
-    <Tree name="Classes" style={{ color: 'black', 'font-size': '40px' }} open>
-        {(classes).map( classInfo => (
-            <Tree name={classInfo.className} style={{ color: 'black', 'font-size': '40px'  }}>
+    <Tree name="Classes" style={{ color: 'black', 'fontSize': '40px' }} open>
+        {(classes).map( (classInfo, key) => (
+            <Tree name={classInfo.className} style={{ color: 'black', 'font-size': '40px'  }} key={key}>
             {(classInfo.members).map((member, index) => (
-                <div>
+                <div key={index}>
                     {(member === userInfo.id) ? 
                         <GradeBox grades={classInfo.grades[index]} assignments={classInfo.assignments}/> : null
                     }

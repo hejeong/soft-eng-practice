@@ -20,12 +20,25 @@ class App extends Component {
         forumData: [],
         quizzesData: [],
         completedQuizzesData: [],
+<<<<<<< HEAD
         gradesData: [],
         userInfo: []
         
+=======
+        userInfo: {
+            id:"pb431",
+            password:'rKZJhyu',
+            name: "Patricia Battipaglia",
+            classes: [
+                '52314',
+                '12345'
+            ]    
+        }
+>>>>>>> 92706a8fced92ddefdcffe3c872be527073250ab
     }}
     
     componentDidMount(){
+        cookies.remove('forumInfo', { path: '/' })
         this.getUserDataFromDb();
         this.getForumDataFromDb();
         this.getQuizDataFromDb();
@@ -39,9 +52,11 @@ class App extends Component {
     };
 
     getForumDataFromDb = () => {
-        fetch("http://localhost:3001/api/getForums")
-          .then(data => data.json())
-          .then(res => this.setState({ forumData: res.data }));
+        axios.get("http://localhost:3001/api/getForums")
+        .then(res => {
+            const forumInfo = res.data 
+            cookies.set('forumInfo', forumInfo, { path: '/' });
+        });
     };
 
     getQuizDataFromDb = () => {
@@ -58,7 +73,6 @@ class App extends Component {
         .then(res => {
             const gradeInfo = res.data 
             cookies.set('gradeInfo', gradeInfo, { path: '/' });
-            this.setState({ gradesData: res.data })
         });
     };
 
@@ -70,8 +84,8 @@ class App extends Component {
                 <Route exact path='/' component={Home} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
-                <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps} grades={this.state.gradesData}/>} />
-                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps} forum={this.state.forumData}/> }/>
+                <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps} grades={cookies.get('gradeInfo')}/>} />
+                <Route path='/forum' render={routerProps => <ForumContainer {...routerProps}/> }/>
                 <Route path='/quizzes' render={routerProps => <QuizIndex {...routerProps} quizzes={this.state.quizzesData} />} />
             </React.Fragment>    
         </Router>
