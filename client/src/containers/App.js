@@ -30,7 +30,6 @@ class App extends Component {
         this.getUserDataFromDb();
         this.getForumDataFromDb();
         this.getQuizDataFromDb();
-        this.getGradesDataFromDb();
     }
     
     getUserDataFromDb = () => {
@@ -53,17 +52,6 @@ class App extends Component {
           .then(res => this.setState({ quizzesData: res.data }));
     };
 
-    getGradesDataFromDb = () => {
-        axios.get('http://localhost:3001/api/getGrades', {params: {
-            member: this.state.userInfo.id,
-            classes: this.state.userInfo.classes
-        }})
-        .then(res => {
-            const gradeInfo = res.data 
-            cookies.set('gradeInfo', gradeInfo, { path: '/' });
-        });
-    };
-
     render(){
         return(
         <Router history={history}>
@@ -72,7 +60,7 @@ class App extends Component {
                 <Route exact path='/' component={Home} />
                 <Route exact path='/register' component={Register} />
                 <Route exact path='/login' component={Login} />
-                <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps} grades={cookies.get('gradeInfo')}/>} />
+                <Route exact path='/grades' render={routerProps => <GradesContainer {...routerProps}/>} />
                 <Route path='/forum' render={routerProps => <ForumContainer {...routerProps}/> }/>
                 <Route path='/quizzes' render={routerProps => <QuizIndex {...routerProps} quizzes={this.state.quizzesData} />} />
             </React.Fragment>    

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import GradeBox from '../../components/grades/GradeBox'
 import Cookies from 'universal-cookie';
 import { memo, useState } from 'react';
@@ -7,7 +7,7 @@ import { useSpring, animated } from 'react-spring'
 import { useMeasure, usePrevious } from '../../components/tree list/helpers'
 import { Global, Frame, Content, toggle } from '../../assets/styles'
 import * as Icons from '../../assets/icons'
-
+import axios from 'axios';
 const cookies = new Cookies();
 
 const Tree = memo(({ children, name, style, open = false }) => {
@@ -37,21 +37,37 @@ const Tree = memo(({ children, name, style, open = false }) => {
     )
   })
 
+class GradesContainer extends Component{
+    componentWillMount(){
+      this.getGradesDataFromDb();
+    }
 
-const GradeContainer = ({match, grades}) => {
-    const classes = grades.data
-    const userInfo = cookies.get('userInfo');
+    getGradesDataFromDb = () => {
+      axios.get('http://localhost:3001/api/getGrades', {params: {
+          member: cookies.get('userId'),
+          classes: cookies.get('userClasses')
+      }})
+      .then(res => {
+          const gradeInfo = res.data 
+          cookies.set('gradeInfo', gradeInfo, { path: '/' });
+      });
+    };
+
+    render(){
+      const classes = cookies.get('gradeInfo').data
+      console.log(cookies.get('gradeInfo'))
+    const userId = cookies.get('userId');
     return(
     <div className='gradebook'>
     <div style={{marginLeft:'10px'}}>
     <>
     <Global/>
     <Tree name="Classes" style={{ color: 'black', 'fontSize': '40px' }} open>
-        {(classes).map( (classInfo, key) => (
+        {classes.map( (classInfo, key) => (
             <Tree name={classInfo.className} style={{ color: 'black', 'font-size': '40px'  }} key={key}>
             {(classInfo.members).map((member, index) => (
                 <div key={index}>
-                    {(member === userInfo.id) ? 
+                    {(member === userId) ? 
                         <GradeBox grades={classInfo.grades[index]} assignments={classInfo.assignments}/> : null
                     }
                 </div>
@@ -62,7 +78,7 @@ const GradeContainer = ({match, grades}) => {
     </>
     </div>
     </div>
-    )
+    )}
 }
 
-export default GradeContainer;
+export default GradesContainer;

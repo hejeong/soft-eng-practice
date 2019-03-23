@@ -17,6 +17,7 @@ function NavBar() {
         cookies.remove('userId', {path: '/'})
         cookies.remove('userName', {path: '/'});
         cookies.remove('userClasses', {path: '/'});
+        set(state => !state)
     }
 
     if(!cookies.get('userId')){
@@ -26,7 +27,7 @@ function NavBar() {
             onMouseEnter={() => set(state => !state)}
             onMouseLeave={() => set(state => !state)}
             style={move}>
-            <NavLink className='navButton' to="/" exact>Home</NavLink>
+            <NavLink className='navButton' to="/" exact>Login</NavLink>
             </animated.div>
         )
     }
