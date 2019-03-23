@@ -11,7 +11,6 @@ class Login extends Component{
         this.state = {
               username: "",
               password: "",
-              userData: []
         };  
     }
 
@@ -31,21 +30,22 @@ class Login extends Component{
                 return res.data
              })
              .then(data => this.setState({
-                userData: data
+                userData: data.data
              }))
         }
       }
       
       render() {
-          if(this.state.userData.length !== 0){
-              cookies.set('userId', this.state.userData.id, {path: '/'})
-              cookies.set('userName', this.state.userData.name, {path: '/'})
-              cookies.set('userClasses', this.state.userData.classes, {path: '/'})
-              const nextUrl = cookies.get('redirectPath')
-              console.log(nextUrl)
-              cookies.remove('redirectPath', {path: '/'})
-              return(<Redirect to={`${nextUrl}`} />)
-          }
+          if(!!this.state.userData){
+            if(this.state.userData.length !== 0){
+                    cookies.set('userId', this.state.userData[0].id, {path: '/'})
+                    cookies.set('userName', this.state.userData[0].name, {path: '/'})
+                    cookies.set('userClasses', this.state.userData[0].classes, {path: '/'})
+                    const nextUrl = cookies.get('redirectPath')
+                    cookies.remove('redirectPath', {path: '/'})
+                    return(<Redirect to={`${nextUrl}`} />)
+            }
+        }
         return (
           <form onSubmit={this.handleLogin.bind(this)}>
             <h3>Login</h3>

@@ -68,9 +68,9 @@ router.get("/loginUser", (req, res) => {
   (err, data) => {
     if(err) return res.json({ success: false, error: err });
     if(data.length === 0){
-      return res.json({authenticated: false})
+      return res.json([{success: false}])
     }
-    return res.json({id: data[0].id, name: data[0].name, classes: data[0].classes});
+    return res.json({success: true, data: data});
   });
 });
 
