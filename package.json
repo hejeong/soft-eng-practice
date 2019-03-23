@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
-    "test": "react-scripts test"
+    "test": "jest",
+    "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\""
   },
   "repository": {
     "type": "git",
@@ -28,5 +28,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {}
 }
