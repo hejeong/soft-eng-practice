@@ -71,7 +71,8 @@ body {
     left: 50%;
     transform: translate(-50%, 0);
     width: 75%;
-    height: 8000px;
+    height: 800px;
+    padding: 20px;
 }
 
 .gradebook {

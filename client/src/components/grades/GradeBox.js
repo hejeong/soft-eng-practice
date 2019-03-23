@@ -12,14 +12,14 @@ class GradeBox extends Component{
         return(
             <div className='gradebox'>
                 {(this.state.assignments).map( (assignment, index) => (
-                    <>
+                    <div key={index}>
                     <div className='grade left'> 
                         {assignment}
                     </div>
                     <div className='grade right'>
                         {this.state.grades[index]}
                     </div>
-                    </>
+                    </div>
                 ))}
             </div>
             )

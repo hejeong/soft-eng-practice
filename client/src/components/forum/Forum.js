@@ -1,13 +1,15 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
-import { createCipher } from 'crypto';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
+
 
 class Forum extends Component {
   constructor(props){
     super(props)
     this.state = {
-      forum: props.forum,
+      forum: (cookies.get('forumInfo')).data,
       query: ''
     }
   }

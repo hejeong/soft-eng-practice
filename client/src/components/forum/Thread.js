@@ -1,11 +1,13 @@
 import React from 'react';
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
-const Thread = ({match, forum}) => {
+const Thread = ({match}) => {
         console.log(match)
+        const forum = (cookies.get('forumInfo')).data
         const currentThread = forum[match.params.threadId];
         return(
-           <div>
-                    <div className='forum'>
+                    <div>
                     <h1>{currentThread.title}</h1>
                     {currentThread.posts.map((posts, index) => 
                         <>
@@ -31,7 +33,6 @@ const Thread = ({match, forum}) => {
                                 </>
                         }</>)}
                     </div>
-            </div>
         )
 }
             

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { useSpring, animated } from 'react-spring';
-import { NavLink } from 'react-router-dom';
+import NewThread from './NewThread'
 
-function NewPostBar() {
+function NewThreadBar() {
     const [toggle, set] = useState(true)
     const move = useSpring({
         marginLeft: toggle ? '100%' : '60%',
@@ -21,10 +21,10 @@ function NewPostBar() {
         <animated.div
         className='newPost'
         style={move}>
-            new post here
+            <NewThread/>
         </animated.div>
         </>
     )
 }
 
-export default NewPostBar
+export default NewThreadBar
