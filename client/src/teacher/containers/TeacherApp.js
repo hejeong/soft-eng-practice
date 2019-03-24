@@ -2,7 +2,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../store'
-
+import Login from '../../Login'
 import Home from './Home';
 import Forum from './Forum';
 import QuizRouter from './QuizRouter';
@@ -12,13 +12,15 @@ import CreateAnnouncement from '../components/CreateAnnouncement';
 import ViewAnnouncement from '../components/ViewAnnouncement';
 import history from '../../History';
 
+
 const TeacherApp = (props) => {
     return(
         <Provider store = {store}>
             <Router history={history}>
                 <React.Fragment>
                 <NavBar/>
-                <Route exact path='/' component={Home} />
+                <Route exact path='/' component={Login} />
+                <Route exact path='/home' component={Home} />
                 <Route exact path='/forum' render={Forum} />
                 <Route exact path='/quizzes' component={QuizRouter} />
                 <Route exact path='/createQuiz' component={CreateQuiz} />

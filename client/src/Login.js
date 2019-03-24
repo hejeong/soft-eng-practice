@@ -3,6 +3,7 @@ import axios from 'axios';
 import history from './History';
 import Cookies from 'universal-cookie';
 import StudentApp from './student/containers/StudentApp'
+import TeacherApp from './teacher/containers/TeacherApp'
 import Home from './student/containers/Home'
 import {Router, Route, Link, Redirect} from 'react-router-dom';
 import Register from './student/containers/user-authentication/Register';
@@ -38,22 +39,26 @@ class Login extends Component{
              })
              .then(data => this.setState({
                 userData: data.data
-             }))
+}))
         }
       }
       
       render() {
-          cookies.remove('userId', {path: '/'})
-          cookies.remove('userName', {path: '/'})
-          cookies.remove('userClasses', {path: '/'})
-          cookies.remove('userType', {path: '/'})
-          if(!!this.state.userData){
-            if(this.state.userData.length !== 0){
-                    cookies.set('userId', this.state.userData[0].id, {path: '/'})
-                    cookies.set('userName', this.state.userData[0].name, {path: '/'})
-                    cookies.set('userClasses', this.state.userData[0].classes, {path: '/'})
-                    cookies.set('userType', this.state.userData[0].type, {path: '/'})
-            }
+          if(((!!this.state.userData) && (!!cookies.get('userType'))) && (cookies.get('userType') !=  this.state.userData[0].type)){
+              console.log('changed')
+              cookies.remove('changeLog')
+          }
+        cookies.remove('userId', {path: '/'})
+        cookies.remove('userName', {path: '/'})
+        cookies.remove('userClasses', {path: '/'})
+        cookies.remove('userType', {path: '/'})
+        if(!!this.state.userData){
+          if(this.state.userData.length !== 0){
+                  cookies.set('userId', this.state.userData[0].id, {path: '/'})
+                  cookies.set('userName', this.state.userData[0].name, {path: '/'})
+                  cookies.set('userClasses', this.state.userData[0].classes, {path: '/'})
+                  cookies.set('userType', this.state.userData[0].type, {path: '/'})
+          }
         }
         {if (!cookies.get('userId')) {
         return (
@@ -72,14 +77,30 @@ class Login extends Component{
                     <input type="password" ref="password" placeholder="enter password"></input>
                 </div>
             </div>
-            <input type="submit" value="Sign In" />
+            <input type="submit" value="Sign In"/>
         </form>
         )}
-        else {
+        else if(cookies.get('userType') === "student"){
+            if(!!cookies.get('changeLog')){
+                console.log('pushed at s')
+                history.push('/home')
+            }
+            cookies.set('changeLog')
+            console.log('mounted s')
             return(
                 <StudentApp/>
             )
         }
+        else 
+            if(!!cookies.get('changeLog')){
+                console.log('pushed at t')
+                history.push('/home')
+            }
+            cookies.set('changeLog')
+            console.log('mounted t')
+            return(
+                <TeacherApp/>
+            )
       }
 }}
 

@@ -19,6 +19,7 @@ class QuizContainer extends Component{
         }
     }
 
+
     componentDidMount(){
         this.startInterval();
     }
@@ -70,6 +71,7 @@ class QuizContainer extends Component{
         const currentQuiz = this.state.quizzes[this.state.quizNum];
         const timeLimit = currentQuiz.timelimit;
         const currentProblems = currentQuiz.problems;
+
         return(
             <form id="quiz-form">
             <CountdownTimer quizId={this.state.quizId} timeLimit={timeLimit} autoSubmit={this.handleSubmit}/>

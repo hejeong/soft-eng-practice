@@ -42,8 +42,10 @@ class Home extends Component{
 
     getQuizDataFromDb = () => {
         fetch("http://localhost:3001/api/getQuizzes")
-          .then(data => data.json())
-          .then(res => this.setState({ quizzesData: res.data }));
+        .then(res => {
+            const quizData = res.data 
+            cookies.set('quizData', quizData, { path: '/' });
+        });
     };
 
       
