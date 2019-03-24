@@ -42,20 +42,12 @@ class Login2 extends Component{
                 cookies.set('userName', (data.data)[0].name, {path: '/'})
                 cookies.set('userClasses', (data.data)[0].classes, {path: '/'})
                 cookies.set('userType', (data.data)[0].type, {path: '/'})
+                history.push('/home')
             })
-            .then(history.push('/home'))
         }
       }
       
       render() {
-          if(!!this.state.userData){
-            if(this.state.userData.length !== 0){
-                    cookies.set('userId', this.state.userData[0].id, {path: '/'})
-                    cookies.set('userName', this.state.userData[0].name, {path: '/'})
-                    cookies.set('userClasses', this.state.userData[0].classes, {path: '/'})
-                    cookies.set('userType', this.state.userData[0].type, {path: '/'})
-            }
-        }
         console.log('hey this is login2')
         {if (!cookies.get('userId')) {
         return (

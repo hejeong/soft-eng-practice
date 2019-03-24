@@ -53,11 +53,7 @@ class Home extends Component{
         }
         return(
             <div>
-                this is home
-                <br></br>
-                <Route exact path='/' component={Login} />
-                <Link to='/'><button className="login-button">Login</button></Link>
-                <Link to='/register'><button className="login-button">Register</button></Link>
+                relogged in
             </div>
         )   
     } 
