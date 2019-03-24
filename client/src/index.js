@@ -1,11 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './containers/App';
+import Login from './Login';
+import StudentApp from './student/containers/StudentApp'
 import './index.css';
 
 ReactDOM.render(
     <div>
-      <App />
+      <Login />
     </div>,
     document.getElementById('root')
   );
