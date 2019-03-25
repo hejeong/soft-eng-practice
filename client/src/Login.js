@@ -19,9 +19,17 @@ class Login extends Component{
         this.state = {
               username: "",
               password: "",
+              unmountStudent: true,
+              unmountTeacher: true,
         };  
     }
 
+    unmountChild = ()=>{
+        this.setState({
+            unmountStudent: true,
+            unmountTeacher: true
+        })
+    }
 
     handleLogin(e) {
         e.preventDefault()
@@ -85,22 +93,29 @@ class Login extends Component{
                 console.log('pushed at s')
                 history.push('/home')
             }
+            if(!!this.state.unmountStudent){
+                this.setState({
+                    unmountStudent: false
+                })
+            }
             cookies.set('changeLog')
             console.log('mounted s')
-            return(
-                <StudentApp/>
-            )
+            return !this.state.unmountStudent ? <StudentApp unmountIt={this.unmountChild}/> : null;
         }
         else 
             if(!!cookies.get('changeLog')){
                 console.log('pushed at t')
                 history.push('/home')
             }
+            if(!!this.state.unmountTeacher){
+                this.setState({
+                    unmountTeacher: false
+                })
+            }
+            console.log(cookies.get('userType'))
             cookies.set('changeLog')
             console.log('mounted t')
-            return(
-                <TeacherApp/>
-            )
+            return !this.state.unmountTeacher ? <TeacherApp unmountIt={this.unmountChild}/> : null;
       }
 }}
 

@@ -9,7 +9,6 @@ import NavBar from './NavBar';
 import history from '../../History'; 
 import axios from 'axios';
 import Cookies from 'universal-cookie'
-import Login2 from '../../Login2'
 import Login from '../../Login'
 const cookies = new Cookies();
 
@@ -22,7 +21,7 @@ class StudentApp extends Component {
 
     componentDidMount(){
         this.getQuizDataFromDb();
-}
+    }
 
     getQuizDataFromDb = () => {
         fetch("http://localhost:3001/api/getQuizzes")
@@ -35,7 +34,7 @@ class StudentApp extends Component {
         return(
         <Router history={history}>
             <React.Fragment>
-                <NavBar/>
+                <NavBar unmountIt={this.props.unmountIt}/>
                 <Route exact path='/' component={Login} />
                 <Route exact path='/home' component={Home} />
                 <Route exact path='/register' component={Register} />

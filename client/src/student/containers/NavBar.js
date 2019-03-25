@@ -18,6 +18,7 @@ function NavBar() {
         cookies.remove('userName', {path: '/'});
         cookies.remove('userClasses', {path: '/'});
         cookies.remove('userType', {path: '/'})
+        this.props.unmountIt()
         set(state => !state)
     }
 

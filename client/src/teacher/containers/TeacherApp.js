@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Router, Route} from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from '../store'
 import Login from '../../Login'
@@ -18,7 +18,7 @@ const TeacherApp = (props) => {
         <Provider store = {store}>
             <Router history={history}>
                 <React.Fragment>
-                <NavBar/>
+                <NavBar unmountIt={props.unmountIt}/>
                 <Route exact path='/' component={Login} />
                 <Route exact path='/home' component={Home} />
                 <Route exact path='/forum' render={Forum} />
