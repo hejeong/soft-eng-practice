@@ -6,7 +6,7 @@ class Home extends Component{
     render(){
         return(
             <div className='centered'>
-                dog
+                Welcome
            </div>
         )
     } 

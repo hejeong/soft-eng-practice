@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom';
+import StudentApp from './student/containers/StudentApp';
 import axios from 'axios'
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
@@ -11,10 +12,15 @@ class Register extends Component{
               fullname: "",
               username: "",
               password: "",
-              userData: []
+              userData: [],
+              unmountStudent: true
         };  
     }
-
+    unmountChild = ()=>{
+        this.setState({
+            unmountStudent: true
+        })
+    }
 
     handleSignUp(e) {
         e.preventDefault()
@@ -43,8 +49,8 @@ class Register extends Component{
         if(this.state.userData.length !== 0){
             cookies.set('userId', this.state.userData.id, {path: '/'})
             cookies.set('userName', this.state.userData.name, {path: '/'})
-            return(<Redirect to='/'/>)
         }
+        if (!cookies.get('userId')) {
         return (
           <form onSubmit={this.handleSignUp.bind(this)}>
             <h3>Register</h3>
@@ -74,7 +80,14 @@ class Register extends Component{
             </div>
             <input type="submit" value="Sign Up" />
           </form>
-        )
+        )}else{
+            if(!!this.state.unmountStudent){
+                this.setState({
+                    unmountStudent: false
+                })
+            }
+            return !this.state.unmountStudent ? <StudentApp unmountIt={this.unmountChild}/> : null;
+        }
       }
     
 }

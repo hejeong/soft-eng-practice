@@ -6,7 +6,7 @@ import StudentApp from './student/containers/StudentApp'
 import TeacherApp from './teacher/containers/TeacherApp'
 import Home from './student/containers/Home'
 import {Router, Route, Link, Redirect} from 'react-router-dom';
-import Register from './student/containers/user-authentication/Register';
+import Register from './Register';
 import ForumContainer from './student/containers/ForumContainer';
 import GradesContainer from './student/containers/gradebook/GradesContainer';
 import QuizIndex from './student/components/quiz/QuizIndex';
