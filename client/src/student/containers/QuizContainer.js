@@ -63,6 +63,7 @@ class QuizContainer extends Component{
         const numCorrect = this.state.correct.filter(value => value).length;
         this.submitQuizToDb(numCorrect);
         cookies.remove('quizStartedAt',{ path: '/' });
+        cookies.set('quizCompleted', true)
         history.push('/quizzes')
         //console.log('Number of Correct Answers: ' + this.state.correct.filter(value => value).length)
     }

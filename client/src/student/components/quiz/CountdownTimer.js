@@ -5,6 +5,7 @@ const cookies = new Cookies();
 class CountdownTimer extends Component {
    constructor(props){
      super(props)
+     // keep track of time started in cookies so that any redirect will still eat away at the quiz taker's time
      if(!cookies.get('quizStartedAt')){
       cookies.set('quizStartedAt', Date.now(), { path: '/' });
      }

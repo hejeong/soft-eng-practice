@@ -50,7 +50,6 @@ router.get("/searchForum", (req, res) => {
 });
 
 router.get("/getGrades", (req, res) => {
-  console.log(req.query)
   Grade.find({
     'classid': {$in:req.query.classes}
   },
@@ -125,9 +124,7 @@ router.post("/registerUser", (req, res) => {
 
 router.post("/submitQuiz", (req, res) => {
   let quiz = new CompletedQuiz();
-  console.log(req)
   const { id, quizId, score } = req.body;
-  console.log({id, quizId, score})
   if ((!id && id !== 0) || !quizId || (!score && score !== 0)) {
     return res.json({
       success: false,

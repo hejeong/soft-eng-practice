@@ -287,6 +287,11 @@ button {
 }
 .quiz-link{
     color:white;
+    background: rgb(129, 35, 206);
+    padding: 3px 5px;
+    margin: 8px;
+    text-decoration: none;
+    border-radius: 3px;
 }
 
 .link-button{
@@ -305,7 +310,7 @@ button {
 
 .timer {
     position: fixed;
-    left: 30px;
+    left: 160px;
     top: -10px;
     color: rgba(236, 232, 8, 0.986);
     display: inline-block;
@@ -342,3 +347,15 @@ button {
 .login-button {
     margin: 2px;
 }
+
+.flash-message {
+    color: rgba(123, 230, 96, 0.692);
+}
+
+.back-button{
+    text-decoration: none;
+    background: rgba(128, 128, 128, 0.664);
+    padding: 3px 4px;
+    color: white;
+}
+
