@@ -13,8 +13,18 @@ const QuizIndex = ({match, quizzes}) => {
         const renderQuizIndex = quizzes.map((quiz, index) => <Link className="quiz-link" 
                                                                     key={index} 
                                                                     to={`/quizzes/${quiz.quizid}`}>Quiz {index+1}</Link>)
+       
+        if(!!cookies.get('quizCompleted')){
+            cookies.remove('quizCompleted')
+            return(
+                <div>
+                    <h3 className="flash-message">Quiz Answers Submitted</h3>
+                    <Link className="back-button" to='/quizzes'>Back</Link>
+                </div>
+            )
+        }
         return(
-            <div>              
+            <div> 
                 <Route exact path={match.url} render={()=>(
                     renderQuizIndex
                 )} />

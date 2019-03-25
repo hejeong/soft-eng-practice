@@ -67,7 +67,6 @@ router.post("/updateQuiz", (req, res) => {
 });
 
 router.get("/getGrades", (req, res) => {
-  console.log(req.query)
   Grade.find({
     'classid': {$in:req.query.classes}
   },
@@ -157,9 +156,7 @@ router.post("/submitQuizT", (req, res) => {
 
 router.post("/submitQuizS", (req, res) => {
   let quiz = new CompletedQuiz();
-  console.log(req)
   const { id, quizId, score } = req.body;
-  console.log({id, quizId, score})
   if ((!id && id !== 0) || !quizId || (!score && score !== 0)) {
     return res.json({
       success: false,

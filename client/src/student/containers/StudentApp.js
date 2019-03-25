@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {Router, Route, Link, Redirect} from 'react-router-dom';
 import Home from './Home';
-import Register from './user-authentication/Register';
+import Register from '../../Register';
 import ForumContainer from './ForumContainer';
 import GradesContainer from './gradebook/GradesContainer';
 import QuizIndex from '../components/quiz/QuizIndex';
