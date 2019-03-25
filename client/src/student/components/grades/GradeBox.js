@@ -1,3 +1,4 @@
+//internal component to render individual classes grades
 import React, { Component } from 'react';
 
 class GradeBox extends Component{

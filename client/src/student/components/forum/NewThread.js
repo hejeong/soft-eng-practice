@@ -1,3 +1,4 @@
+//internal component to create new thread
 import React, {Component} from 'react';
 import axios from 'axios'
 import Cookies from 'universal-cookie';
@@ -10,25 +11,26 @@ class NewThread extends Component{
     constructor(props) {
         super(props)
         this.state = {
-            searchInfo: [],
-            title:"",
-            post: "",
-            clicked: false,
-            times: 0
+            title:"", //title of post
+            post: "", //content of post
         };  
     }
 
+    //actively updates title state from form input
     handleTitleChange = title => event => {
         this.setState({
           title: event.target.value,
         });
     };
 
+    //actively updates post state from form input
     handlePostChange = name => event => {
         this.setState({
           post: event.target.value,
         });
     };
+
+    //post request using component state
     postThread = () => {
         const title = this.state.title
         const post = this.state.post
@@ -38,20 +40,14 @@ class NewThread extends Component{
           posts: post,
           users: user
         })
-        .then(res => console.log(res.data));
-        this.setState({times: 0})
-
     };
 
-    submit = () => {
-        this.postThread();
-        history.push('/forum')
-    }
 
     render(){
         return(
             <div style={{backgroundColor:'white'}}>
             <form>
+                {/*input for title */}
                 <TextField
                 id="title"
                 label="Title"
@@ -61,6 +57,7 @@ class NewThread extends Component{
                 variant="filled"
                 />
                 <p>
+                {/*input for post content */}
                 <TextField
                 id="post"
                 label="Post"
@@ -70,10 +67,12 @@ class NewThread extends Component{
                 variant="filled"
                 />
                 </p>
+                {/*active previews of post */}
                 <p style={{color:'black'}}>{this.state.title}</p>
                 <p style={{color:'black'}}>{this.state.post}</p>
             </form>
-            <Link to="/forum" exact> <button onClick={this.submit}>Post</button></Link>
+
+            <button onClick={this.postThread}>Post</button>
             </div>
         )   
     } 

@@ -1,3 +1,4 @@
+//Search bar component to filter forum results
 import React, {Component} from 'react';
 import axios from 'axios'
 import Cookies from 'universal-cookie';
@@ -9,30 +10,21 @@ class SearchBar extends Component{
     constructor(props) {
         super(props)
         this.state = {
-              searchInfo: [],
-              query: "",
-              clicked: false,
-              times: 0
+              query: ""
         };  
     }
-
+    //queries the database for any threads with a title that contains the query, then sets a cookie containing result
     searchForum = (event) => {
-        this.setState({
-            clicked: true
-        })
         const query = this.state.query
         axios.get('http://localhost:3001/api/searchForum', {params: {title:query}})
          .then(res =>{
             const searchInfo = res.data 
             cookies.set('searchInfo', searchInfo, { path: '/forum' });
-            this.setState({
-                searchInfo:searchInfo
-            })
          })
 
     };
 
-
+    //actively updates query in the component state
     handleInputChange = () => {
         this.setState({
           query: this.search.value,
@@ -40,8 +32,6 @@ class SearchBar extends Component{
       }
       
     render(){
-        const data = this.state.searchInfo.data
-        console.log(data)
         return(
             <div>
             <form>

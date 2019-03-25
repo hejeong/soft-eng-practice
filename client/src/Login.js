@@ -56,10 +56,6 @@ class Login extends Component{
               console.log('changed')
               cookies.remove('changeLog')
           }
-        cookies.remove('userId', {path: '/'})
-        cookies.remove('userName', {path: '/'})
-        cookies.remove('userClasses', {path: '/'})
-        cookies.remove('userType', {path: '/'})
         if(!!this.state.userData){
           if(this.state.userData.length !== 0){
                   cookies.set('userId', this.state.userData[0].id, {path: '/'})

@@ -41,7 +41,7 @@ app.use(logger("dev"));
 
 router.get("/searchForum", (req, res) => {
   Forum.find({
-    'title': req.query.title
+    'title': {$regex: ".*" + req.query.title + ".*", $options: 'i'}
   },
     (err, data) => {
     if (err) return res.json({ success: false, error: err });
